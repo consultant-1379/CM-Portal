@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site>
+  <title>CM Portal</title>
+  <homeTitle>Home</homeTitle>
+  <home>
+    <blocks>
+      <block color="green" icon="page" href="overview.xml">
+        <title>Overview</title>
+        <desc>Learn the purpose of CM Portal.</desc>
+      </block>
+      <block color="blue" icon="page" href="artifacts.xml">
+        <title>Artifacts</title>
+        <desc>Learn the key artifacts of CM Portal.</desc>
+      </block>
+      <block color="darkblue" icon="page" href="features.xml">
+        <title>Features</title>
+        <desc>Learn the key features of CM Portal.</desc>
+      </block>
+      <block color="flat_purple" href="/apidocs/" scope="external">
+        <title>REST API Documentation</title>
+        <desc>Learn how to use the REST API for CM Portal.</desc>
+      </block>
+      <block color="purple" href="https://arm1s11-eiffel004.eiffel.gic.ericsson.se:8443/nexus/content/sites/tor/CM-Portal/latest/changelog.html" scope="external">
+        <title>Changelog</title>
+        <desc>Records of all changes made to CM Portal.</desc>
+      </block>
+    </blocks>
+  </home>
+</site>

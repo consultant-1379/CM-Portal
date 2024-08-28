@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<task id="requests">
+  <title>Requests</title>
+  <taskbody>
+    <context>
+      <p>
+        Represents a Project Request.
+      </p>
+      <p><b>Objective</b></p>
+      <p>Create a new Request within the CM-Portal.</p>
+      <p>
+        <b>Outline</b>
+        <ol>
+          <li><xref href="#openRequest">Open the Requests List-View</xref></li>
+          <li><xref href="#createRequest">Create New Request</xref></li>
+          <li><xref href="#enterDetails">Enter the Request Details</xref></li>
+          <li><xref href="#saveRequest">Save Request</xref></li>
+        </ol>
+      </p>
+    </context>
+    <steps>
+      <step id="openRequest">
+        <cmd>Open the Requests List-View</cmd>
+        <info>
+          <p>Click the Requests link in the navigation bar.</p>
+        </info>
+      </step>
+      <step id="createRequest">
+        <cmd>Create New Request</cmd>
+        <info>
+          <p>Click the <b>Create new Request</b> button.</p>
+        </info>
+      </step>
+      <step id="enterDetails">
+        <cmd>Enter the Request Details</cmd>
+        <info>
+          <p>Enter the details as shown below.</p>
+          <p><b>NOTE:</b> Any restrictions on the fields are outlined.</p>
+          <ul>
+            <li><b>Name:</b> Name of the Request.</li>
+          </ul>
+          <ul>
+           <li>
+              <b>Program:</b> Must be an existing Program.
+            </li>
+               <li>
+              <b>Schema:</b> Must be an existing Schema.
+            </li>
+            </ul>
+           <ul>
+            <li><b>Content:</b> Fill required fields from a selected Schema.
+            </li>
+          </ul>
+        </info>
+      </step>
+      <step id="saveRequest">
+        <cmd>Save Request</cmd>
+        <info>
+          <p>
+            Click the <b>Save</b> button, the Request will be created, and the user will be
+            redirected back to the view page for the newly created Request.
+          </p>
+          <p>
+            <b>NOTE:</b> Request will not save if any fields are invalid (invalid fields
+            are highlighted in red).
+          </p>
+        </info>
+      </step>
+    </steps>
+    <result>
+      <p>A New Request is created in the CM-Portal.</p>
+      <p>A New Jira is created for the Request.</p>
+    </result>
+  </taskbody>
+</task>

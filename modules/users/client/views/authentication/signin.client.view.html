@@ -1,0 +1,33 @@
+<div class="eaLogin">
+  <div class="eaLogin-ericssonLogo"></div>
+  <div class="eaLogin-title">DE<br/>CM Portal</div>
+  <div class="eaLogin-outter">
+    <div class="eaLogin-inner">
+      <div class="eaLogin-login" style="display: block;">
+        <form name="vm.userForm" ng-submit="vm.signin()"
+          ng-class="{ 'has-error': vm.userForm.username.$invalid || vm.userForm.password.$invalid, 'has-success': vm.userForm.username.$valid && vm.userForm.password.$valid}"
+          novalidate autocomplete="off">
+          <label class="ebText">Username</label>
+          <div>
+            <input type="text" id="username" name="username" class="ebInput eb_wMargin eaLogin-loginUsername" ng-model="vm.credentials.username" placeholder="Signum" required>
+          </div>
+          <label class="ebText">Password</label>
+          <div>
+            <input type="password" id="password" name="password" class="ebInput eb_wMargin eaLogin-loginPassword" ng-model="vm.credentials.password" placeholder="Password" required>
+          </div>
+          <div>
+            <button type="submit" class="ebBtn eaLogin-formButton" style="color: white !important" ng-disabled="!vm.userForm.$valid">
+               Sign in
+            </button>
+            <span class="help-block" ng-messages="vm.userForm.$dirty && vm.userForm.$error">
+              <p ng-message="required">Please enter a username and password.</p>
+            </span>
+          </div>
+        </form>
+      </div>
+    <p class="eaLogin-copy">
+      © Ericsson AB 2013-2020 - All Rights Reserved.
+      No part of this software may be reproduced in any form without the written permission of the copyright holder.</p>
+    </div>
+  </div>
+</div>

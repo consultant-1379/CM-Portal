@@ -1,0 +1,38 @@
+<section>
+  <div class="page-header">
+    <div class="btn-toolbar pull-right">
+        <a class="btn btn-sm btn-primary" ui-sref="users.edit({userId: vm.user._id})">Edit </a>
+    </div>
+    <h1>Viewing User ' {{ vm.user.username }} '</h1>
+  </div>
+  <form>
+    <fieldset disabled>
+      <div class="row row-relative">
+        <!-- User DETAILS -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Name</label>
+            <p class="form-control-static">{{ vm.user.displayName }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Role</label>
+            <p class="form-control-static">{{ vm.role.name }}</p>
+          </div>
+        </div>
+        <!-- Permission DETAILS -->
+        <div class="col-md-6 col-border">
+          <div class="col-border-padding">
+            <label>Special Permissions</label>
+            <div ng-switch="vm.user.permissions.length">
+              <p ng-switch-when="0">None</p>
+            <div class="form-group" ng-repeat="permission in vm.user.permissions">
+              <p class="form-control-static"><strong>path:</strong> "{{ permission.resources }}" <strong>permitted Actions:</strong> "{{ permission.methods }}"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</section>

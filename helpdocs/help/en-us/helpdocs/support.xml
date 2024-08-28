@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<concept id="support">
+  <title>Support</title>
+  <conbody>
+    <ul>
+      <li><xref type="concept" href="#overview">Overview</xref></li>
+      <li><xref type="concept" href="#purpose">Purpose</xref></li>
+    </ul>
+    <section>
+      <title id="overview">Overview</title>
+      <lines>
+        This page provides the link to Jira for creating support ticket/request.
+      </lines>
+    </section>
+    <section>
+      <title id="purpose">Purpose</title>
+      <lines>
+        For Support please create issue at the below link.
+        <li><xref type="concept" href="https://eteamproject.internal.ericsson.com/browse/ETTS-14190" scope="external">Support - Jira Link</xref></li>
+      </lines>
+    </section>
+  </conbody>
+</concept>

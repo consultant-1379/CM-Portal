@@ -1,0 +1,7 @@
+{
+  "name": "validConfigurationFile",
+  "type": "yaml",
+  "content": "Key: Value",
+  "additionalInfo": "Some Additional Info",
+  "locations": "/root/abc, /root"
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<concept id="Artifacts">
+  <title>Artifacts</title>
+  <conbody>
+    <section>
+      <p>These pages provide information on all of the artifacts in the CM Portal.</p>
+      <p>
+        <image href="/resources/images/common/tutorial.svg" alt="Tutorial" align="left"/>
+        <xref href="artifacts/tokens.xml" type="task">Mimer Token</xref>
+      </p>
+      <p>
+        <image href="/resources/images/common/tutorial.svg" alt="Tutorial" align="left"/>
+        <xref href="artifacts/products_create.xml" type="task">Create Products</xref>
+      </p>
+      <p>
+        <image href="/resources/images/common/tutorial.svg" alt="Tutorial" align="left"/>
+        <xref href="artifacts/products_update.xml" type="task">Update Products</xref>
+      </p>
+      <p>
+        <image href="/resources/images/common/tutorial.svg" alt="Tutorial" align="left"/>
+        <xref href="artifacts/programs.xml" type="task">Programs</xref>
+      </p>
+      <p>
+        <image href="/resources/images/common/tutorial.svg" alt="Tutorial" align="left"/>
+        <xref href="artifacts/schemas.xml" type="task">Schemas</xref>
+      </p>
+       <p>
+        <image href="/resources/images/common/tutorial.svg" alt="Tutorial" align="left"/>
+        <xref href="artifacts/requests.xml" type="task">Requests</xref>
+      </p>
+      <p>
+        <image href="/resources/images/common/tutorial.svg" alt="Tutorial" align="left"/>
+        <xref href="artifacts/configuration_files.xml" type="task">Configuration Files</xref>
+      </p>
+    </section>
+  </conbody>
+</concept>

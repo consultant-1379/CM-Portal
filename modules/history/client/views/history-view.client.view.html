@@ -1,0 +1,160 @@
+<script id="log-card-header-template" type="text/ng-template">
+  <h5 ng-switch="pass.person.constructor.name">
+    <span ng-switch-when="String">{{ pass.person }}</span>
+    <span ng-switch-default>
+      <a ng-click="openMail(pass.person.email, pass.objName);event.preventDefault();"
+      href="mailto:{{ pass.person.email }}?subject=DE CM Portal Query Regarding {{ vm.objectType }} Object: {{ pass.objName }}" class="log-action-link">
+        <strong>&#9993;</strong>&nbsp;{{ pass.person.displayName }} ({{ pass.person.username.toUpperCase() }})
+      </a>
+    </span>
+    <strong>{{pass.action}}</strong> this {{ vm.objectType }}
+    <div class="btn-toolbar pull-right">
+      <button class="btn btn-success" ng-if="pass.index > -1" ng-click="vm.toggleElemVisibility(pass.index)" id="update-button-{{pass.index}}">
+        Show Changes
+      </button>
+      <span>
+        <button stop-propagation id="restore-{{pass.action}}-{{pass.index + 1}}" class="btn btn-danger restore"
+          ng-show="vm.isRestoreButtonVisible(pass.action, pass.index)" ng-click="vm.restoreObject(pass.data)">
+          <i class="icon icon-info"></i>
+          Restore
+        </button>
+      </span>
+      <button class="btn btn-primary" ng-click="vm.downloadJSONFile(pass.data, pass.data.name + pass.downloadText + '.JSON')">
+        Download {{pass.downloadText}} JSON
+      </button>
+    </div>
+  </h5>
+  <h6 class="text-muted">Action performed on: {{ vm.formatDate(pass.actionAt) }}</h6>
+</script>
+
+<script id="outer-change-template" type="text/ng-template">
+  <div class="log-card-body" ng-include="'inner-change-template'"
+    ng-repeat="pass in [{changes:pass.changes, hierarchy:pass.hierarchy, uniqueId: pass.parentIndex + pass.uniqueName,
+      depth: pass.depth, isNew: pass.isNew, isRemoved: pass.isRemoved, fullHierarchy: pass.fullHierarchy }]">
+  </div>
+  <div ng-repeat="change in pass.changes | orderBy:'-childChanges'">
+    <div ng-if="change.childChanges" ng-include="'outer-change-template'"
+      ng-repeat="pass in [{changes:change.childChanges, uniqueName: pass.uniqueName + '-' + change.name,
+        hierarchy: change.name.toString(), parentIndex: pass.parentIndex, depth: pass.depth + 1, isNew: change.isNew,
+        isRemoved: change.isRemoved, fullHierarchy: pass.fullHierarchy + '/' + change.name.toString() }]">
+    </div>
+  </div>
+</script>
+
+<script id="inner-change-template" type="text/ng-template">
+  <table class="table table-condensed">
+    <tbody class="child-change-table-body">
+      <tr style="{{pass.depth > 1 ? 'display:none': ''}}" class="history-log-row" ng-if="pass.changes.length > 0 && pass.hierarchy"
+        id="{{pass.uniqueId}}" ng-click="vm.toggleChildrenVisibility(pass.uniqueId)" title="{{pass.fullHierarchy}}">
+        <td width="5%" class="align-left no-wrap-text">
+          <strong>
+            <span id="{{pass.uniqueId}}-arrow-plus" class="icon-blue">&#8853;</span>
+            <span id="{{pass.uniqueId}}-arrow-minus" class="icon-blue" style="display:none;">&#8854;</span>
+          </strong>
+          <span ng-if="pass.depth > 1" ng-repeat="n in range(1, pass.depth)">&#8680;</span>
+          <strong>{{pass.hierarchy}}</strong>
+          <span ng-if="pass.isNew" class="bold green">&#91;A&#93;</span> <!--ADDED-->
+          <span ng-if="pass.isRemoved" class="bold red">&#91;R&#93;</span> <!--REMOVED-->
+        </td>
+        <td width="25%"></td><td width="30%"></td><td width="5%"></td><td width="30%"></td>
+      </tr>
+
+      <tr style="{{pass.hierarchy ? 'display:none' : '' }}" class="history-log-row {{pass.uniqueId}}" ng-repeat="change in pass.changes"
+        ng-if="!change.childChanges && !(change.origValue == '-' && change.newValue == 'REMOVED')" id="{{pass.uniqueId}}-{{change.name}}"
+        title="{{pass.fullHierarchy + '/' + change.name.toString()}}">
+
+        <!-- FIELD NAME -->
+        <td width="30%" class="align-right" colspan="2">
+          <strong>{{ change.name }}</strong>
+        </td>
+
+        <!-- ORIG VALUE -->
+        <td width="30%">
+          <span ng-class="change.origValue == '-' ? 'bold red' : ''">{{ change.origValue }}</span>
+        </td>
+
+        <!-- ARROW ICON -->
+        <td width="5%"><span class="icon-blue-circle-bg">&#10144;</span></td>
+
+        <!-- NOW VALUE -->
+        <td width="30%">
+          <span ng-class="change.newValue == 'REMOVED' ? 'bold red' : ''">{{ change.newValue }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</script>
+
+<section>
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <a class="btn btn-sm btn-success" ng-click="vm.toggleAllVisibility()">Show / Hide All Updates</a>
+      </div>
+      <div class="btn-group" title="{{ vm.log.deletedAt ? 'This object has been removed from the database' : '' }}">
+        <a class="btn btn-sm btn-warning" id="view-object" ng-disabled="vm.log.deletedAt && vm.log.deletedBy"
+          ui-sref="{{vm.htmlViewArtifact}}.view({[vm.objType + 'Id']: vm.log.associated_id})">View Artifact</a>
+      </div>
+    </div>
+    <h1>
+      {{ vm.objectType }} Log '{{ vm.log.currentName }}'
+      <a class="sub-heading" ng-class="{ 'disabled': vm.log.deletedAt || vm.log.deletedBy }"
+        ui-sref="{{vm.htmlViewArtifact}}.view({[vm.objType + 'Id']: vm.log.associated_id})">
+        ID: {{ vm.log.associated_id }}
+      </a>
+    </h1>
+  </div>
+
+  <!-- OBJECT CREATED CARD -->
+  <div ng-if="vm.log.createdAt && vm.log.createdBy">
+    <br>
+    <h3> CREATED </h3>
+    <div class="log-card" id="log-cards">
+      <div class="log-card-body" ng-include="'log-card-header-template'" ng-repeat="pass in [{person: vm.log.createdBy, objName: vm.log.currentData.name,
+      actionAt: vm.log.createdAt, data: vm.log.originalData, action: 'CREATED', downloadText: 'Original', index: -1}]">
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJECT DELETED CARD -->
+  <div ng-if="vm.log.deletedAt && vm.log.deletedBy">
+    <h3> DELETED </h3>
+    <div class="log-card" id="log-cards">
+      <div class="log-card-body" ng-include="'log-card-header-template'" ng-repeat="pass in [{person: vm.log.deletedBy, objName: vm.log.currentData.name,
+      actionAt: vm.log.deletedAt, data: vm.log.currentData, action: 'DELETED', downloadText: 'Latest', index: -1}]">
+      </div>
+    </div>
+  </div>
+  <!-- OBJECT UPDATE CARDS -->
+  <div infinite-scroll='loadUpdates()' infinite-scroll-distance='0' infinite-scroll-container='".content"'
+    infinite-scroll-disabled="finishedLoading" ng-if="vm.log.updates.length != 0 ">
+    <!-- OBJECT UPDATE CARDS -->
+    <h3>UPDATES</h3>
+    <div class="log-card" ng-repeat="update in vm.log.updates">
+      <div class="log-card-body" ng-include="'log-card-header-template'"
+        ng-repeat="pass in [{person: update.updatedBy, objName: vm.log.currentData.name,
+      actionAt: update.updatedAt, data: update.currentData, action: 'UPDATED', downloadText: 'Update #' + (update.index), index: $index}]">
+      </div>
+      <div id="update-container-{{$index}}">
+        <div class="log-card-body">
+          <!--TABLE HEADER-->
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th width="5%" class="align-left no-wrap-text">Hierarchy</th>
+                <th width="25%" class="align-right">Field</th>
+                <th width="30%" class="align-center">Was</th>
+                <th width="5%" class="align-center"></th>
+                <th width="30%" class="align-center">Now</th>
+              </tr>
+            </thead>
+            <tbody class="parent-update-table-body"></tbody>
+          </table>
+        </div>
+        <div ng-include="'outer-change-template'" ng-repeat="pass in [{changes: update.changes, parentIndex: $index}]">
+        </div>
+      </div>
+    </div>
+
+</section>

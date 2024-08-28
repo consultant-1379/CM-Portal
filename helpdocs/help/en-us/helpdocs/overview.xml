@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<concept id="Overview">
+  <title>Overview</title>
+  <conbody>
+    <p>
+      The purpose of the Configuration Management Portal is to provide a Mimer automation solution.
+    </p>
+  </conbody>
+</concept>

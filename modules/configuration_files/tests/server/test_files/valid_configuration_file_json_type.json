@@ -1,0 +1,7 @@
+{
+  "name": "JSONTESTER",
+  "type": "json",
+  "content": {
+    "TestKey": "TValue"
+  }
+}

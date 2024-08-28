@@ -1,0 +1,192 @@
+{
+  "paths": {
+    "/schemas": {
+      "get": {
+        "tags": [
+          "Schemas"
+        ],
+        "summary": "Returns a list of Schemas that match the provided query parameters.",
+        "description": "Returns a list of all Schemas and their key-values when no filter parameters are provided. \nFor filtering syntax see <a href='/helpdocs/#help/app/helpdocs/topic/features/apiSearchandFilter' target='_blank'><b>here</b></a>.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name":"q",
+            "in":"query",
+            "description":"Specifies what Schemas should be retrieved based on provided key-values. \nMultiple key-values can be specified with the ampersand-delimited format. Eg. To list all Schemas with the name 'enm_sed': 'q=name=enm_sed', and to list all Schemas with the name 'enm_sed' and version '1.1.1' and created_at '2018-01-16T10:57:32.594Z': 'q=name=enm_sed&version=1.1.1&created_at=2018-01-16T10:57:32.594Z'",
+            "required":false,
+            "allowReserved": true,
+            "type":"string",
+            "example": "name=schemaName&type=projectRequest&created_at=2018-01-16T10:57:32.594Z"
+          },
+          {
+            "name":"fields",
+            "in":"query",
+            "description":"Specifies what key-values associated with the retrieved Schemas that you want to receive. \nMultiple key-values can be retrieved through filtering keys with the comma-delimited format. Eg. For the name value alone: 'fields=name', and for the name and type values: 'fields=name,type'",
+            "required":false,
+            "allowReserved": true,
+            "type":"string",
+            "example": "name,type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Schema"
+              }
+            }
+          },
+          "422": {
+            "description": "Improperly structured query. Make sure to use ?q=&lt;key&gt;=&lt;value&gt; syntax"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Schemas"
+        ],
+        "summary": "Creates a new Schema.",
+        "description": "Creates and returns a new Schema.",
+        "produces": [
+          "application/json"
+        ],
+        "consume": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Schema object that represents your Schema",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Schema"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created Schema successfully."
+          },
+          "403": {
+            "description": "User is not allowed to create a Schema."
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/schemas/{schemaId}":{
+      "get":{
+        "tags": [
+          "Schemas"
+        ],
+        "summary": "Returns a Schema.",
+        "description": "Returns a Schema. \nFor filtering syntax see <a href='/helpdocs/#help/app/helpdocs/topic/features/apiSearchandFilter' target='_blank'><b>here</b></a>.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+           {
+              "name": "schemaId",
+              "in": "path",
+              "required": true,
+              "description": "The id of the Schema to retrieve",
+              "type": "string"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved Schema",
+            "schema": {
+              "$ref": "#/definitions/Schema"
+            }
+          },
+          "404": {
+            "description": "A schema with the given Id could not be found in the database"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put":{
+        "tags": [
+          "Schemas"
+        ],
+        "summary": "Updates a Schema.",
+        "description": "Updates an existing Schema.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+             "name": "schemaId",
+             "in": "path",
+             "required": true,
+             "description": "The id of the Schema to update",
+             "type": "string"
+          }
+       ],
+        "responses": {
+          "200":{
+            "description":"Upated Schema successfully."
+          },
+          "422":{
+            "description":"Possible Message: Schema missing one or more of the following keys:\n\"jiraUrl\"\n\"jiraIssueType\"\n\"jiraProgram\"\n\"jiraComponents\"\n,\"jiraLabels\""
+          },
+          "403":{
+            "description":"User is not allowed to update specific Schema."
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete":{
+        "tags": [
+          "Schemas"
+        ],
+        "summary": "Deletes a Schema.",
+        "description": "Deletes a Schema.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+           {
+              "name": "schemaId",
+              "in": "path",
+              "required": true,
+              "description": "The id of the Schema to delete",
+              "type": "string"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted Schema",
+            "schema": {
+              "$ref": "#/definitions/Schema"
+            }
+          },
+          "404":{
+            "description":"A schema with that id does not exist"
+          },
+          "403":{
+            "description":"User is not allowed to delete Schema."
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}

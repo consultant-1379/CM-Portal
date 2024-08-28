@@ -1,0 +1,68 @@
+<section>
+  <div class="page-header">
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group" ng-if="vm.isCurrentUser || vm.isSuperAdminOrAdmin">
+        <a class="btn btn-sm btn-primary" ui-sref="tokens.edit({tokenId: vm.token._id})">Edit</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-sm btn-warning" id="view-log"
+          ui-sref="logs.view({ objType: 'tokens', objId: vm.token._id })">View Log</a>
+      </div>
+      <div class="btn-group">
+      <div ng-include="'rate-update-template'" ng-repeat="pass in [{}]"></div>
+    </div>
+    </div>
+    <h1>Viewing Token for '{{ vm.token.name }}'</h1>
+  </div>
+  <form>
+    <fieldset disabled>
+      <div class="row row-relative">
+        <!-- Token DETAILS -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Signum</label>
+            <p class="form-control-static">{{ vm.token.name }}</p>
+          </div>
+          <div class="form-group">
+            <label>Refresh Token</label>
+            <p class="form-control-static">{{ vm.token.refreshToken }}</p>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</section>
+
+<script id="rate-update-template" type="text/ng-template">
+  <button class="btn btn-sm btn-success" id="open-rate-update-modal-btn" ng-click="vm.openRateUpdateModal()">Token Update Schedule</button>
+  <!-- The Modal -->
+  <div id="rate-update-modal" class="modal custom-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="pull-right" style="display:flex; align-items: center">
+          <button class="btn btn-sm form-button" ng-click="vm.closeRateUpdateModal()">Close</button>
+        </div>
+        <!-- <h2 style="border-bottom: none">Change Token Update Schedule</h2> -->
+      </div>
+      <div class="modal-body">
+        <form name="RateUpdateForm" ng-submit="vm.submitRateUpdateForm()">
+          <fieldset>
+            <div class="form-group">
+              <label>Next Update Date: {{ vm.token.nextUpdateTime }}</label>
+            </div>
+            <div class="form-group">
+              <label>Choose Token Update Rate:</label>
+              <select class="form-control" id="rateSelect" ng-model="vm.token.updateRate"
+                ng-options="rate.pattern as rate.frequency for rate in updateRate">
+                <option value="" disabled selected>--Select Update Rate--</option>
+              </select>
+            </div>
+            <div class="align-center">
+              <button id="submit-rate-update" class="btn btn-primary" type="submit">Save</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</script>

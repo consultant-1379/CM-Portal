@@ -1,0 +1,6 @@
+{
+  "productNumbers": ["XYZ12345"],
+  "adminsOrUsers": "Admins",
+  "accessControlGroups": ["validAccessGroup"],
+  "productsAction": "Add"
+}

@@ -1,0 +1,32 @@
+{
+  "definitions": {
+    "Schema": {
+      "type": "object",
+      "required": [
+        "name",
+        "content"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "note": "Combination of name and version must be unique, Minimum of 3 characters, Maximum of 30 characters",
+          "example": "requestSchemaName",
+          "minLength": 3,
+          "maxLength": 30
+        },
+        "program_id": {
+          "type": "string",
+          "example": "592d1fa182ee3e002055763b",
+          "note": "program_id must be a valid Program ID.",
+          "minLength": 24,
+          "maxLength": 24
+        },
+        "content": {
+          "type": "object",
+          "note": "The actual json schema itself goes here",
+          "example": {}
+        }
+      }
+    }
+  }
+}

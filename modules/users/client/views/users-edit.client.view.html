@@ -1,0 +1,65 @@
+<section>
+  <div class="page-header">
+    <h1>Editing ' {{ vm.user.displayName }} '</h1>
+  </div>
+  <form name="form" ng-submit="vm.submitForm()">
+    <fieldset>
+      <div class="form-group has-feedback"
+        ng-class="{ 'has-error': form.role.$invalid, 'has-success': form.role.$valid }">
+        <label>Role</label>
+        <select class="form-control" name="role" ng-model="vm.role" ng-options="role.name for role in vm.roles"
+          required>
+          <option value="{{ vm.role }}" selected>{{ vm.role.name }}</option>
+        </select>
+        <span class="glyphicon form-control-feedback"
+          ng-class="{ 'glyphicon-remove': form.role.$invalid, 'glyphicon-ok': form.role.$valid }"></span>
+      </div>
+      <div>
+      <legend>Permissions</legend>
+      <div ng-repeat="permission in vm.user.permissions track by $index" class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <h6 class="panel-title pull-left" style="padding-top: 7.5px;">Permission {{ $index + 1 }}:
+          </h6>
+          <div class="btn-group pull-right">
+            <button id="remove-permission[{{$index}}]" ng-click="vm.removePermission($index)" type="button"
+              class="btn btn-sm form-button"><i class="glyphicon glyphicon-remove"></i> Remove Permission</button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <!-- Special Permissions -->
+          <div class="form-group has-feedback"
+            ng-class="{ 'has-error': form['permissions{{$index}}-resources'].$invalid, 'has-success': form['permissions{{$index}}-resources'].$valid }">
+            <label>Path : <strong> " {{ permission.resources }} " </strong>
+            </label>
+            <input class="form-control" name="permissions{{$index}}-resources" type="text" placeholder="e.g: /users"
+              ng-model="vm.user.permissions[$index].resources" ng-minlength="3" ng-maxlength="60"
+              ng-model-options="{updateOn: 'blur'}">
+            <span class="glyphicon form-control-feedback"
+              ng-class="{ 'glyphicon-remove': form['permissions{{$index}}-resources'].$invalid, 'glyphicon-ok': form['permissions{{$index}}-resources'].$valid }"></span>
+            <span class="help-block" ng-messages="form['permissions{{$index}}-resources'].$error">
+              <p ng-message="minlength">This must be at least of length 3</p>
+              <p ng-message="maxlength">This must be at most of length 60</p>
+            </span>
+          </div>
+          <div class="form-group has-feedback"
+          ng-class="{ 'has-error': form['permissions{{$index}}-methods'].$invalid, 'has-success': form['permissions{{$index}}-methods'].$valid }">
+          <label name="methods-label">Actions :</label>
+          <div class="form-group">
+            <label ng-repeat="methodName in methods" class="checkbox-inline">
+              <input type="checkbox" name="selectedMethods[]" value="{{methodName}}" ng-checked="vm.user.permissions[$parent.$index].methods.indexOf(methodName) > -1" ng-click="optionSelected(methodName, $parent.$index)"> {{methodName}}
+            </label>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div>
+        <button id="add-permission" ng-click="vm.addPermission()" type="button" class="btn btn-default pull-right"><i
+          class="glyphicon glyphicon-plus"></i> Add Permission</button>
+        </div>
+    </fieldset>
+    <div class="btn-group pull-left"
+      title="{{form.$invalid || vm.formSubmitting ? 'Ensure all values are valid and required fields are filled in.' : ''}}">
+      <button class="btn btn-primary" type="submit" ng-disabled="form.$invalid || vm.formSubmitting">Save</button>
+    </div>
+  </form>
+</section>

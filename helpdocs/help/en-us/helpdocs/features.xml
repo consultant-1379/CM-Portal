@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<concept id="Features">
+  <title>Features</title>
+  <conbody>
+    <section>
+      <p>These pages provide information on all of the features in the CM Portal.</p>
+      <p>
+       <image href="/resources/images/common/tutorial.svg" alt="Tutorial" align="left"/>
+        <xref href="features/users.xml" type="task">Users</xref>
+      </p>
+       <p>
+        <image href="/resources/images/common/tutorial.svg" alt="Tutorial" align="left"/>
+        <xref href="features/roles.xml" type="task">Roles</xref>
+      </p>
+      <p>
+        <image href="/resources/images/common/tutorial.svg" alt="Tutorial" align="left"/>
+        <xref href="features/logs.xml" type="task">Historical Logs</xref>
+      </p>
+      <p>
+        <image href="/resources/images/common/tutorial.svg" alt="Tutorial" align="left"/>
+        <xref href="features/notificationBar.xml" type="task">Notification Bar</xref>
+      </p>
+    </section>
+  </conbody>
+</concept>

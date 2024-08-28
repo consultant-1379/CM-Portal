@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<task id="schemas">
+  <title>Schemas</title>
+  <taskbody>
+    <context>
+      <p>
+        A Schema represents structure of a Project Request.
+      </p>
+      <p>
+        <b>NOTE:</b> This is only available to Admins.
+      </p>
+      <p><b>Objective</b></p>
+      <p>Create a new Schema within the CM-Portal.</p>
+      <p>
+        <b>Outline</b>
+        <ol>
+          <li><xref href="#openSchema">Open the Schemas List-View</xref></li>
+          <li><xref href="#createSchema">Create New Schema</xref></li>
+          <li><xref href="#enterDetails">Enter the Schema Details</xref></li>
+          <li><xref href="#saveSchema">Save Schema</xref></li>
+        </ol>
+      </p>
+    </context>
+    <steps>
+      <step id="openSchema">
+        <cmd>Open the Schemas List-View</cmd>
+        <info>
+          <p>Click the Schemas link in the navigation bar.</p>
+        </info>
+      </step>
+      <step id="createSchema">
+        <cmd>Create New Schema</cmd>
+        <info>
+          <p>Click the <b>Create new Schema</b> button.</p>
+        </info>
+      </step>
+      <step id="enterDetails">
+        <cmd>Enter the Schema Details</cmd>
+        <info>
+          <p>Enter the details as shown below.</p>
+          <p><b>NOTE:</b> Any restrictions on the fields are outlined.</p>
+          <ul>
+            <li><b>Name:</b> Name of the Schema.</li>
+            <p><b>NOTE:</b> For Project Request Schema, Schema name has to start with 'projectRequest' e.g. 'projectRequestABC'.</p>
+          </ul>
+          <ul>
+           <li>
+              <b>Program:</b> Must be an existing Program.
+            </li>
+            </ul>
+           <ul>
+            <li><b>Content:</b> Content of the Schema in JSON format.
+            <p><b>NOTE:</b> Refer to 'Schema Info' section of this page for more information.</p>
+            </li>
+          </ul>
+
+        </info>
+      </step>
+      <step id="saveSchema">
+        <cmd>Save Schema</cmd>
+        <info>
+          <p>
+            Click the <b>Save</b> button, the Schema will be created, and the user will be
+            redirected back to the view page for the newly created Schema.
+          </p>
+          <p>
+            <b>NOTE:</b> Schema will not save if any fields are invalid (invalid fields
+            are highlighted in red).
+          </p>
+        </info>
+      </step>
+    </steps>
+    <result>
+      <p>A New Schema is created in the CM-Portal.</p>
+    </result>
+
+    <section>
+      <title id="schemaInfo">Schema Info</title>
+      <lines>
+        Schemas must contain required keys for CM-Portal to create a Jira ticket.
+        These fields are hidden in UI when filling out request form, so they are required to have a "default" value, except for "productName", which should be treated as any normal field.
+      </lines>
+      <simpletable>
+        <sthead>
+          <stentry>
+            Project
+          </stentry>
+          <stentry>
+            Required Keys
+          </stentry>
+          <stentry>
+            Example
+          </stentry>
+          <stentry>
+            Description
+          </stentry>
+        </sthead>
+        <strow>
+          <stentry>
+            IDUN
+          </stentry>
+          <stentry>
+            jiraProject
+          </stentry>
+          <stentry>
+            <codeblock>
+            "jiraProject": {
+            "default": "IDUN"
+            }
+            </codeblock>
+          </stentry>
+          <stentry>
+            <lines>
+              This impacts on type of Jira Issue is created.
+              e.g. IDUN-12345
+            </lines>
+          </stentry>
+        </strow>
+        <strow>
+          <stentry>
+          </stentry>
+          <stentry>
+            jiraLabels
+          </stentry>
+          <stentry>
+            <codeblock>
+            "jiraLabels": {
+            "default": "label1, label2"
+            }
+            </codeblock>
+          </stentry>
+          <stentry>
+            <lines>
+              Assigns labels to Jira Issue. Should be comma separated values.
+              e.g. label1, label2
+            </lines>
+          </stentry>
+        </strow>
+        <strow>
+          <stentry>
+          </stentry>
+          <stentry>
+            jiraComponents
+          </stentry>
+          <stentry>
+            <codeblock>
+            "jiraComponents": {
+            "default": "Idun CI/CD"
+            }
+            </codeblock>
+          </stentry>
+          <stentry>
+            <lines>
+              Assigns Component to Jira Issue.
+              e.g. Idun CI/CD
+            </lines>
+          </stentry>
+        </strow>
+        <strow>
+          <stentry>
+          </stentry>
+          <stentry>
+            jiraUrl
+          </stentry>
+          <stentry>
+            <codeblock>
+            "jiraUrl": {
+            "default": "jira-oss.seli.wh.rnd.internal.ericsson.com"
+            }
+            </codeblock>
+          </stentry>
+           <stentry>
+            Assigns on which Jira the Issue will be created.
+          </stentry>
+        </strow>
+        <strow>
+          <stentry>
+          </stentry>
+          <stentry>
+            productName
+          </stentry>
+          <stentry>
+            <codeblock>
+            "productName": {
+            "title": "Product Name (Artifact ID).",
+            "description": "This will form the product's ArtifactID and Deliverable. e.g. my-product-name",
+            "pattern": "^.+$",
+            "type": "string",
+            "error_message": "This cannot contain spaces."
+            }
+            </codeblock>
+          </stentry>
+          <stentry>
+            <lines>
+              Assigns this Product Name to the title of Jira Issue.
+              e.g. New Project Request for: XX-XXXX-XX
+            </lines>
+          </stentry>
+        </strow>
+      </simpletable>
+
+      <simpletable>
+        <sthead>
+          <stentry>
+            Project
+          </stentry>
+          <stentry>
+            Required Keys
+          </stentry>
+          <stentry>
+            Example
+          </stentry>
+          <stentry>
+            Description
+          </stentry>
+        </sthead>
+        <strow>
+          <stentry>
+            CIS
+          </stentry>
+          <stentry>
+            jiraProject
+          </stentry>
+          <stentry>
+            <codeblock>
+            "jiraProject": {
+            "default": "CIS"
+            }
+            </codeblock>
+          </stentry>
+          <stentry>
+            <lines>
+              This impacts on type of Jira Issue is created.
+              e.g. CIS-12345
+            </lines>
+          </stentry>
+        </strow>
+        <strow>
+          <stentry>
+          </stentry>
+          <stentry>
+            jiraLabels
+          </stentry>
+          <stentry>
+            <codeblock>
+            "jiraLabels": {
+            "default": "label1, label2"
+            }
+            </codeblock>
+          </stentry>
+          <stentry>
+            <lines>
+              Assigns labels to Jira Issue. Should be comma separated values.
+              e.g. label1, label2
+            </lines>
+          </stentry>
+        </strow>
+        <strow>
+          <stentry>
+          </stentry>
+          <stentry>
+            jiraComponents
+          </stentry>
+          <stentry>
+            <codeblock>
+            "jiraComponents": {
+            "default": "CI Infra / CI Fwk"
+            }
+            </codeblock>
+          </stentry>
+          <stentry>
+            <lines>
+              Assigns Component to Jira Issue.
+              e.g. CI Infra / CI Fwk
+            </lines>
+          </stentry>
+        </strow>
+        <strow>
+          <stentry>
+          </stentry>
+          <stentry>
+            jiraTeamName
+          </stentry>
+          <stentry>
+            <codeblock>
+            "jiraTeamName": {
+            "default": "Other"
+            }
+            </codeblock>
+          </stentry>
+          <stentry>
+            <lines>
+              Assigns 'Sub-Area or Your Team Name:' field in Jira Issue.
+              e.g. Other
+            </lines>
+          </stentry>
+        </strow>
+        <strow>
+          <stentry>
+          </stentry>
+          <stentry>
+            jiraLocationSite
+          </stentry>
+          <stentry>
+            <codeblock>
+            "jiraLocationSite": {
+            "default": "Other"
+            }
+            </codeblock>
+          </stentry>
+          <stentry>
+            <lines>
+              Assigns 'Location/Site:' field in Jira Issue.
+              e.g. Athlone
+            </lines>
+          </stentry>
+        </strow>
+         <strow>
+          <stentry>
+          </stentry>
+          <stentry>
+            jiraProgram
+          </stentry>
+          <stentry>
+            <codeblock>
+            "jiraProgram": {
+            "default": "ENM"
+            }
+            </codeblock>
+          </stentry>
+          <stentry>
+           <lines>
+            Assigns 'Your PDG/Area:' field in Jira Issue.
+            e.g. CI/Internal
+           </lines>
+          </stentry>
+        </strow>
+        <strow>
+          <stentry>
+          </stentry>
+          <stentry>
+            jiraUrl
+          </stentry>
+          <stentry>
+            <codeblock>
+            "jiraUrl": {
+            "default": "jira-oss.seli.wh.rnd.internal.ericsson.com"
+            }
+            </codeblock>
+          </stentry>
+          <stentry>
+            Assigns on which Jira the Issue will be created.
+          </stentry>
+        </strow>
+        <strow>
+          <stentry>
+          </stentry>
+          <stentry>
+            productName
+          </stentry>
+          <stentry>
+            <codeblock>
+            "productName": {
+            "title": "Product Name (Artifact ID).",
+            "description": "This will form the product's ArtifactID and Deliverable. e.g. my-product-name",
+            "pattern": "^.+$",
+            "type": "string",
+            "error_message": "This cannot contain spaces."
+            }
+            </codeblock>
+          </stentry>
+          <stentry>
+           <lines>
+            Assigns this Product Name to the title of Jira Issue.
+            e.g. New Project Request for: XX-XXXX-XX
+           </lines>
+          </stentry>
+        </strow>
+      </simpletable>
+      <b> Schema content example for 'CIS' jiraProject:</b>
+      <codeblock>
+              {
+        "$schema": "http://json-schema.org/draft-06/schema#",
+        "definitions": {
+            "exampleYesNo": {
+                "title": "Example title. Select Yes or No",
+                "description": "More details about yes no question.",
+                "type": "string",
+                "enum": ["Yes", "No"],
+                "error_message": "Can only be Yes or No"
+            },
+            "signumRegexExample": {
+                "title": "Architects signum",
+                "description": "The signum of the Architect.",
+                "pattern": "^[e|z][a-z]{6}",
+                "type": "string",
+                "error_message": "Must be a valid signum e.g. (e|z)yyyyyy"
+            },
+            "enumBiggerExample": {
+                "title": "Select one",
+                "description": "More details on selection.",
+                "type": "string",
+                "enum": ["A", "B", "C"],
+                "error_message": "Must be one of: A, B, C"
+            },
+            "patternExample": {
+                "title": "Fixed pattern",
+                "description": "Enter your pattern here please",
+                "type": "string",
+                "pattern": "^abc.def.g.",
+                "error_message": "Must in form of abc.def.g.SOMETHING e.g. abc.def.g.example"
+            },
+            "patternExample2": {
+                "title": "Fixed pattern 2.",
+                "description": "Enter your pattern here 2",
+                "pattern": "^FIXED[0-9]{4,4}$",
+                "type": "string",
+                "error_message": "Must be in the form of FIXEDXXXX e.g. FIXED1111"
+            },
+            "simpleStringExample": {
+                "title": "Simple String",
+                "description": "More details about String.",
+                "type": "string",
+                "error_message": "Any string or 'None'"
+            },
+            "jiraComponents": {
+                "default" : "CI Infra / CI Fwk"
+            },
+            "jiraLabels": {
+                "default": "label1, label2"
+            },
+            "jiraUrl": {
+                "default": "jira-oss.seli.wh.rnd.internal.ericsson.com"
+            },
+            "jiraProgram": {
+                "default": "ENM"
+            },
+            "jiraLocationSite": {
+                "default": "Other"
+            },
+            "jiraTeamName": {
+                "default": "Other"
+            },
+            "jiraProject": {
+                "default": "CIS"
+            }
+        },
+        "properties": {
+            "parameters": {
+                "default": {},
+                "description": "Please fill in all required fields",
+                "properties": {
+                    "exampleYesNo": {
+                        "$ref": "#/definitions/exampleYesNo"
+                    },
+                    "signumRegexExample": {
+                        "$ref": "#/definitions/signumRegexExample"
+                    },
+                    "enumBiggerExample": {
+                        "$ref": "#/definitions/enumBiggerExample"
+                    },
+                    "patternExample": {
+                        "$ref": "#/definitions/patternExample"
+                    },
+                    "patternExample2": {
+                        "$ref": "#/definitions/patternExample2"
+                    },
+                    "simpleStringExample": {
+                        "$ref": "#/definitions/simpleStringExample"
+                    },
+                    "jiraUrl": {
+                        "$ref": "#/definitions/jiraUrl"
+                    },
+                    "jiraProgram": {
+                        "$ref": "#/definitions/jiraProgram"
+                    },
+                    "jiraComponents": {
+                        "$ref": "#/definitions/jiraComponents"
+                    },
+                    "jiraLabels": {
+                        "$ref": "#/definitions/jiraLabels"
+                    },
+                    "jiraLocationSite": {
+                        "$ref": "#/definitions/jiraLocationSite"
+                    },
+                    "jiraTeamName": {
+                        "$ref": "#/definitions/jiraTeamName"
+                    },
+                    "jiraProject": {
+                        "$ref": "#/definitions/jiraProject"
+                    }
+                },
+                "required": [],
+                "title": "ENM Product EAR form",
+                "type": "object"
+            }
+        },
+        "required": [],
+        "type": "object"
+}
+      </codeblock>
+    </section>
+    <section>
+    <lines>
+      <b>Fields Explained</b>
+      1 - "title"
+      2 - "description"
+      3 - "enum" (this will be available as dropdown)
+      4 - "error_message"
+    </lines>
+    <image href="/resources/images/common/formFields.png" alt="FormFields" align="left"/>
+    </section>
+  </taskbody>
+</task>

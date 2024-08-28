@@ -1,0 +1,31 @@
+{
+    "parent": "$(parentJson)/app.json",
+    "defaultPhase": "package",
+    "properties": {
+        "package": "helpdocs",
+        "name": "HelpDocs",
+        "version": "1.0.0",
+        "skeleton": "2.3.3",
+        "skeletonType": "app"
+    },
+    "phases": {
+        "package": {
+            "depends": [
+                "clean",
+                "analyze",
+                "test",
+                "compile",
+                "compress"
+            ]
+        }
+    },
+    "dependencies": {
+        "jscore": "2.1.0",
+        "widgets": "1.11.7",
+        "i18n": "3.0.4",
+        "container": "1.17.2",
+        "assets": "1.11.9",
+        "helpsdk": "2.12.5",
+        "layouts": "1.9.5"
+    }
+}

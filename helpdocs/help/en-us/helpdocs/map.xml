@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<map>
+  <topicref href="overview.xml" navtitle="Overview" type="concept" />
+  <topicref href="support.xml" navtitle="Support" type="concept" />
+  <topicref href="https://arm1s11-eiffel004.eiffel.gic.ericsson.se:8443/nexus/content/sites/tor/CM-Portal/latest/changelog.html" navtitle="Changelog" scope="external" type="concept" />
+  <topicref href="artifacts.xml" navtitle="Artifacts">
+    <topicref href="artifacts/tokens.xml" navtitle="Mimer Token" />
+    <topicref href="artifacts/products_create.xml" navtitle="Create Products" />
+    <topicref href="artifacts/products_update.xml" navtitle="Update Products" />
+    <topicref href="artifacts/programs.xml" navtitle="Programs" />
+    <topicref href="artifacts/schemas.xml" navtitle="Schemas" />
+    <topicref href="artifacts/requests.xml" navtitle="Requests" />
+    <topicref href="artifacts/configuration_files.xml" navtitle="Configuration Files" />
+  </topicref>
+  <topicref href="features.xml" navtitle="Features">
+    <topicref href="features/users.xml" navtitle="Users" type="concept" />
+    <topicref href="features/roles.xml" navtitle="Roles" />
+    <topicref href="features/logs.xml" navtitle="Historical Logs" />
+    <topicref href="features/notificationBar.xml" navtitle="Notification Bar" />
+  </topicref>
+</map>

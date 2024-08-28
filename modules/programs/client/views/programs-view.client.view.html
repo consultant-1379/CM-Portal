@@ -1,0 +1,34 @@
+<section>
+  <div class="page-header">
+    <div class="btn-toolbar pull-right">
+      <a class="btn btn-sm btn-primary" ui-sref="programs.edit({programId: vm.program._id})">Edit</a>
+    </div>
+    <div class="btn-group">
+      <a class="btn btn-sm btn-warning" id="view-log" ui-sref="logs.view({ objType: 'programs', objId: vm.program._id })">View
+        Log</a>
+    </div>
+    <h1>Viewing Program '{{ vm.program.name }}'</h1>
+  </div>
+  <form>
+    <fieldset disabled>
+      <div class="row row-relative">
+        <!-- Program DETAILS -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Name</label>
+            <p class="form-control-static">{{ vm.program.name }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Dependent Requests</label>
+        <p ng-if="!vm.dependentRequests.length">None</p>
+        <div class="dependent-items">
+            <p ng-repeat="dependentRequest in vm.dependentRequests">
+                <a ui-sref="requests.view({requestId: dependentRequest._id})">{{ dependentRequest.name }}</a>
+            </p>
+        </div>
+    </div>
+    </fieldset>
+  </form>
+</section>

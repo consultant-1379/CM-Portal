@@ -1,0 +1,63 @@
+<div class="container" ng-controller="HeaderController as vm">
+  <div class="navbar-header" !important;">
+    <a ui-sref="home" class="navbar-brand">
+      <strong ng-if="vm.isDev">DEV: </strong>CM Portal
+    </a>
+  </div>
+  <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation">
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a data-toggle="tooltip" title="Version" ng-href="{{vm.changeLogURL}}" target="_blank">
+          <span ng-bind="vm.version"></span>
+        </a>
+      </li>
+      <li data-toggle="tooltip" title="Login" ng-hide="vm.authentication.user" class="ebIcon ebIcon_login" ui-sref="authentication.signin" style="cursor: pointer">
+      </li>
+      <li uib-dropdown style="cursor: pointer">
+        <a class="dropdown-toggle" uib-dropdown-toggle>
+          <span class="navbar-icon icon-help nav-top-icon-style"></span>
+          <span class="navbar-icon icon-chevron-down"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="/helpdocs/" target="_blank">Help Documentation</a></li>
+          <li><a href="/apidocs/" target="_blank">API Documentation</a></li>
+        </ul>
+      </li>
+      <li uib-dropdown ng-show="vm.authentication.user" style="cursor: pointer">
+        <a id="user-username" ng-click="vm.userNavToggle()">
+          <span class="navbar-icon icon-profile nav-top-icon-style"></span>
+          <span ng-bind="vm.authentication.user.username"></span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <nav id="userNav" class="user-nav">
+    <div class="user-nav-body">
+      <div ng-click="vm.userNavToggle()" class="cursor-pointer"><i class="icon icon-cross user-nav-icon-close"></i></div>
+      <div class="user-nav-profile-box">
+        <div class="icon icon-profile user-nav-profile-icon"></div>
+        <div ng-bind="vm.authentication.user.username"></div>
+        <div ng-bind="vm.role.name"></div>
+      </div>
+      <div><a href="/helpdocs/" target="_blank">Help Documentation</a></div>
+      <div><a href="/apidocs/" target="_blank">API Documentation</a></div>
+      <a href="/api/auth/signout" class="btn user-nav-signout-button" target="_self"><i class="icon icon-logout user-nav-icon-signout"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign out</a>
+    </div>
+  </nav>
+  <div id="sub-bar" class="sideNav-sub-bar">
+    <div ng-click="vm.sideNavToggle()" class="sideNav-toggle cursor-pointer"><a class="sideNav-toggle-text"><i id="sideNav-toggle-button" class="icon side-toggle-icon"></i> Menu</a></div>
+  </div>
+  <nav id="sideNav-Menu" class="sideNav">
+    <ul class="nav navbar-nav list-unstyled" ng-if="vm.menu.shouldRender(vm.authentication.user, vm.role);">
+      <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user, vm.role);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
+        <a href="#" ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button" ><i class="navbar-icon icon-chevron-right"></i> {{item.title}}</span></a>
+        <ul ng-switch-when="dropdown" class="dropdown-menu">
+          <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user, vm.role);">
+            <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-click="vm.sideNavToggle()"  ng-bind="subitem.title"></a>
+          </li>
+        </ul>
+        <a ng-switch-default ui-sref="{{item.state}}" ng-click="vm.sideNavToggle()" ng-bind="item.title"></a>
+      </li>
+    </ul>
+  </nav>
+</div>

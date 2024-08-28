@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<task id="productsUpdate">
+  <title>Products Update</title>
+  <taskbody>
+    <context>
+      <p>
+      CM-Portal allows managing Users/Admins of a given list of product numbers.
+      </p>
+      <p><b>Objective</b></p>
+      <p>Update Products Users/Admins.</p>
+      <p><b>NOTE:</b> This feature is available only to Admins.</p>
+      <p>
+        <b>Outline</b>
+        <ol>
+          <li><xref href="#openProductsUpdate">Open the Update Products View</xref></li>
+          <li><xref href="#enterDetails">Add Product Details</xref></li>
+          <li><xref href="#enterDesignResp">Add Design Responsible Org</xref></li>
+          <li><xref href="#enterUsers">Manage Product Users/Admins</xref></li>
+          <li><xref href="#save">Update Products</xref></li>
+        </ol>
+      </p>
+    </context>
+    <steps>
+      <step id="openProductsUpdate">
+        <cmd>Open the Update Products View</cmd>
+        <info>
+          <p>From the side Menu, click the Products, then Update link.</p>
+        </info>
+      </step>
+      <step id="enterDetails">
+        <cmd>Add Product Numbers</cmd>
+          <ul>
+            <li><b>Product Numbers:</b> Comma separated list of the product numbers to be updated. This field is required.</li>
+          </ul>
+      </step>
+      <step id="enterDesignResp">
+       <cmd>Enter Design Responsible Org</cmd>
+           <ul>
+            <li><b>Design Responsible Org:</b>Enter New Org Unit Short Name in Ericsson employees profile (shown in People Finder).</li>
+          </ul>
+      </step>
+
+      <step id="enterUsers">
+       <cmd>Manage Product Users/Admins</cmd>
+          <ul>
+            <li><b>Manage Admins:</b>By default signums and access control groups are added/removed from the Products 'Users' list. To manage Products 'Admins', click the <b>Manage Admins</b> button. All actions will be performed on the 'Admins' list instead.</li>
+          </ul>
+          <ul>
+            <li><b>Action to be performed:</b> Choose between 'Add, or 'Remove' Signums and ACGs to the list of product numbers.</li>
+          </ul>
+          <ul>
+            <li><b>Signums:</b> Choose Signum(s) to update from the dropdown menu.
+             <b>Note:</b>if the signum required cannot be found on the dropdown menu: type the signum then press <b> Enter </b>.</li>
+          </ul>
+          <ul>
+            <li><b>Access Control Groups Names:</b> Comma separated list of the Access Control Groups Names to be assigned/removed.</li>
+          </ul>
+      </step>
+      <step id="save">
+        <cmd>Update Products</cmd>
+        <info>
+          <p>
+            Click the <b>Update Products</b> button, the CM-Portal will execute the required operations on Mimer and a log will be saved in the CM-Portal. The user will be
+            redirected to the log view page to see the details of the operations performed on Mimer.
+          </p>
+        </info>
+      </step>
+    </steps>
+    <result>
+      <p>Update Products in Mimer.</p>
+    </result>
+  </taskbody>
+</task>

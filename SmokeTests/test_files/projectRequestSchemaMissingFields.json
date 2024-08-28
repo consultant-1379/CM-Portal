@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "object",
+  "definitions": {
+    "jiraUrl": {
+      "default": "jira-url.seli.wh.internal.ericsson.com"
+    },
+    "jiraProject": {
+      "default": "programName"
+    },
+    "jiraComponents": {
+      "default": "components"
+    }
+  },
+  "properties": {
+    "parameters": {
+      "properties": {
+        "jiraURL": {
+          "$ref": "#/definitions/jiraUrl"
+        },
+        "jiraProject": {
+          "$ref": "#/definitions/jiraProject"
+        },
+        "jiraComponents": {
+          "$ref": "#/definitions/jiraComponents"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

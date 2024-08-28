@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<task id="tokens">
+  <title>Mimer Token</title>
+  <taskbody>
+    <context>
+      <p>
+      For CM-Portal to use the Munin/Mimer API, Functional ID Token is required. A user must first fetch a refresh token using the Mimer
+      GUI. The refresh token will then be used by the client application. The refresh token is a long-live token (90 days). Once the token details are entered in the CM-Portal for the first time,
+      CM-Portal will automatically update the token every month to avoid its expiry.
+      </p>
+      <p><b>Objective</b></p>
+      <p>Add Mimer Token within the CM Portal.</p>
+      <p><b>NOTE:</b> This feature is available only to Admins.</p>
+      <p>
+        <b>Outline</b>
+        <ol>
+          <li><xref href="#openToken">Open the Token List-View</xref></li>
+          <li><xref href="#createToken">Add Token</xref></li>
+          <li><xref href="#enterDetails">Enter the Token Details</xref></li>
+          <li><xref href="#saveToken">Save Token</xref></li>
+        </ol>
+      </p>
+    </context>
+    <steps>
+      <step id="openToken">
+        <cmd>Open the Mimer Token List-View</cmd>
+        <info>
+          <p>Click the Mimer Token link in the side Menu.</p>
+        </info>
+      </step>
+      <step id="createToken">
+        <cmd>Add Token</cmd>
+        <info>
+          <p>Click the <b>Add Token</b> button.</p>
+        </info>
+      </step>
+      <step id="enterDetails">
+        <cmd>Enter the Token Details</cmd>
+        <info>
+          <p>Enter the details as shown below.</p>
+          <p><b>NOTE:</b> Any restrictions on the fields are outlined.</p>
+          <ul>
+            <li><b>Functional ID:</b> Name of the Functional ID.</li>
+          </ul>
+          <ul>
+            <li><b>Refresh Token:</b> Functional ID refresh token, must be obtained using the Mimer GUI for the first time.</li>
+          </ul>
+        </info>
+      </step>
+      <step id="saveToken">
+        <cmd>Save Token</cmd>
+        <info>
+          <p>
+            Click the <b>Save</b> button, the Token will be saved in the CM-Portal, and the user will be
+            redirected back to the view page for the added token.
+          </p>
+          <p>
+            <b>NOTE:</b> Token will not save if the details are incorrect (invalid fields
+            are highlighted in red).
+          </p>
+        </info>
+      </step>
+    </steps>
+    <result>
+      <p>Mimer Token is added in the CM-Portal.</p>
+    </result>
+  </taskbody>
+</task>

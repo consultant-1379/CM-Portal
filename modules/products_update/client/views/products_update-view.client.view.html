@@ -1,0 +1,87 @@
+<section>
+  <div class="page-header">
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <a class="btn btn-sm btn-warning" id="view-log" ui-sref="productsUpdate.list">View All Logs</a>
+      </div>
+    </div>
+    <h1>Viewing Log number '{{ vm.productsUpdate._id }}'</h1>
+  </div>
+  <form>
+    <fieldset>
+      <div class="row row-relative">
+        <!-- ASSOCIATION DETAILS -->
+        <div class="col-md-3"
+          ng-if="vm.productsUpdate.productNumbersUpdated.length >0 || vm.productsUpdate.invalidProductNumbers.length >0">
+          <div class="form-group" ng-if="vm.productsUpdate.productNumbersUpdated.length >0">
+            <label>Product Numbers Updated with ' {{ vm.productsUpdate.productsAction }} {{
+              vm.productsUpdate.userTypeUpdated }} '</label>
+            <div class="dependent-items-other" ng-repeat="productNumber in vm.productsUpdate.productNumbersUpdated">
+              <p>{{ productNumber }}</p>
+            </div>
+            <label>Signums</label>
+            <div ng-if="vm.productsUpdate.signums.length ===0">None</div>
+            <div class="dependent-items-other" ng-repeat="signum in vm.productsUpdate.signums">
+              <p>{{ signum }}</p>
+            </div>
+            <label>Groups</label>
+            <div ng-if="vm.productsUpdate.accessControlGroups.length ===0">None</div>
+            <div class="dependent-items-other" ng-repeat="group in vm.productsUpdate.accessControlGroups">
+              <p>{{ group }}</p>
+            </div>
+          </div>
+          <div class=" form-group" ng-if="vm.productsUpdate.invalidProductNumbers.length >0">
+            <label>Error to Update '{{ vm.productsUpdate.userTypeUpdated }}' in Product Numbers: </label>
+            <div class="dependent-items-other" ng-repeat="productNumber in vm.productsUpdate.invalidProductNumbers">
+              <p>{{ productNumber }}</p>
+            </div>
+          </div>
+
+          <div class="form-group" ng-if="vm.productsUpdate.invalidSignums.length >0">
+            <label>Invalid Signums</label>
+            <div class="dependent-items-other" ng-repeat="invalidSignum in vm.productsUpdate.invalidSignums">
+              <p>{{ invalidSignum }}</p>
+            </div>
+          </div>
+          <div class="form-group" ng-if="vm.productsUpdate.invalidAccessGroups.length >0">
+            <label>Invalid Access Groups</label>
+            <div class="dependent-items-other" ng-repeat="invalidGroup in vm.productsUpdate.invalidAccessGroups">
+              <p>{{ invalidGroup }}</p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ASSOCIATION DETAILS -->
+        <div class="col-md-4" ng-if="vm.productsUpdate.designResponsibleUpdated">
+          <div class="form-group" ng-if="vm.productsUpdate.productNumbersUpdatedForDesign.length >0">
+            <label>Product Numbers Updated with Design Responsible Org. ' {{ vm.productsUpdate.designResponsibleUpdated
+              }} '</label>
+            <div class="dependent-items-other"
+              ng-repeat="productNumber in vm.productsUpdate.productNumbersUpdatedForDesign">
+              <p>{{ productNumber }}</p>
+            </div>
+          </div>
+          <div class=" form-group" ng-if="vm.productsUpdate.invalidDesignProductNumbers.length>0">
+            <label>Error to Update Design Responsible Org. in Product Numbers:</label>
+            <div class="dependent-items-other"
+              ng-repeat="productNumber in vm.productsUpdate.invalidDesignProductNumbers">
+              <p>{{ productNumber }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- Update DETAILS -->
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Updated At:</label>
+            <p class="form-control-static">{{ vm.productsUpdate.name }}</p>
+          </div>
+          <div class="form-group">
+            <label>Updated By:</label>
+            <p class="form-control-static">{{ vm.productsUpdate.updatedBy }}</p>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</section>

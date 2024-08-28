@@ -1,0 +1,34 @@
+{
+  "name": "invalidProjectRequest",
+  "program_id": "000000000000000000000000",
+  "content": {
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "type": "object",
+    "definitions": {
+      "any_string": {
+        "description": "This must be any string",
+        "pattern": "^..*$",
+        "type": "string"
+      }
+    },
+    "properties": {
+      "parameters": {
+        "properties": {
+          "jiraIssueType": {
+            "$ref": "#/definitions/any_string"
+          },
+          "jiraProgram": {
+            "$ref": "#/definitions/any_string"
+          },
+          "jiraComponents": {
+            "$ref": "#/definitions/any_string"
+          },
+          "jiraLabels": {
+            "$ref": "#/definitions/any_string"
+          }
+        }
+      }
+    },
+    "additionalProperties": false
+  }
+}

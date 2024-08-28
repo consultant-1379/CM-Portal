@@ -1,0 +1,38 @@
+{
+  "definitions": {
+    "ConfigurationFile": {
+      "required": ["name", "type", "content"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_]*$",
+          "example": "TestConfigurationFile",
+          "note": "name and type combination must be unique and name must be minimum of 2 characters and maximum of 100 characters.",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "type": {
+          "type": "string",
+          "example": "yaml"
+        },
+        "additionalInfo": {
+          "type": "string",
+          "maxLength": 150,
+          "note": "Any additional information about a file, this is not a required field",
+          "example": "Configuration file"
+        },
+        "locations": {
+          "type": "string",
+          "maxLength": 350,
+          "note": "Any locations of a file, this is not a required field",
+          "example": "/root/configs"
+        },
+        "content": {
+          "type": "object",
+          "example": "key_name: value",
+          "note": "Any non-JSON Configuration Files' content will be saved to content.data to make content an object. This only effects the output from GET requests."
+        }
+      }
+    }
+  }
+}

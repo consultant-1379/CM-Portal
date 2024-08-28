@@ -1,0 +1,15 @@
+{
+  "content": {
+    "parameters": {
+      "jiraLabels": "label",
+      "jiraComponents": "component",
+      "jiraProject": "IDUN",
+      "jiraUrl": "www.jira.com",
+      "programName": "program-name"
+    }
+  },
+  "name": "validRequest",
+  "jira": "ABC-123",
+  "program_id": "000000000000000000000000",
+  "schema_id": "000000000000000000000000"
+}

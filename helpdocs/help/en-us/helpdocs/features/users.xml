@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<concept id="Users">
+  <title>Users</title>
+  <conbody>
+    <ul>
+      <li><xref type="concept" href="#overview">Overview</xref></li>
+      <li><xref type="concept" href="#purpose">Purpose of this Feature</xref></li>
+      <li><xref type="concept" href="#userUpdate">Update User Access Privileges</xref></li>
+    </ul>
+
+    <section>
+      <title id="overview">Overview</title>
+      <lines>
+        This page provides information on the User authorisation management within the CM Portal.
+      </lines>
+    </section>
+
+    <section>
+      <title id="purpose">Purpose of this Feature</title>
+      <lines>
+        Is to manage user authorisation to ensure secure, authorised access only according to need to Configuration management services using Role and Attribute based access control.
+      </lines>
+    </section>
+
+    <section>
+      <title id="userUpdate">Edit a users User Role or Attribute authorisation</title>
+        <ol>
+          <li>
+            When logged in as an Admin or Super-Admin, the user must click on the side Menu.
+          </li>
+          <li>From the revealed menu, click on 'User Management', then 'Users'.</li>
+          <li>In the 'Users' page, click on 'Edit' button.</li>
+          <li>To modify the User Role: from the dropdown menu select the new role.</li>
+          <li>To grant access to a specific Attribute or feature that may not be authorised by the Users assigned User Role:
+            <ul> Click on the button 'Add Permission'. </ul>
+            <ul> Enter the path name to grant access to (e.g : /test). </ul>
+            <ul> From 'Actions' check-boxes select the type of actions the user will be permitted to perform. </ul>
+            <ul> <b>Note:</b> 'get': grants view permissions only, 'put': grants update permissions, 'post': grants create permissions and 'delete' grants delete permissions. </ul>
+           </li>
+
+          <li>Click 'Save'. This user details are now updated.</li>
+        </ol>
+        <lines>
+          <b>NOTE:</b> Only users who have logged into CM Portal at least once are listed.
+        </lines>
+    </section>
+  </conbody>
+</concept>

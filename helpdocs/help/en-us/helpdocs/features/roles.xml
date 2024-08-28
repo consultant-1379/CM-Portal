@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<task id="roles">
+  <title>User Roles</title>
+  <taskbody>
+    <context>
+      <p>
+        A User Role defines the authorisation level or the operations a user can perform. Each User must have an
+        associated Role.
+      </p>
+
+      <ol>
+        <li>
+          <b>User:</b> The default user-role. Is assigned on initial login to the CM portal, further User role authorisation must be assigned by request from CM portal Admin user.
+        </li>
+        <li>
+          <b>Admin:</b> In addition to 'user' privileges, Admins can manage Users and perform all primary administrative tasks.
+        </li>
+        <li>
+          <b>Super-Admin:</b> In addition to 'Admin' privileges, Super-Admins can perform CRUD
+          operations on users and roles. This user-role has no restrictions.
+        </li>
+      </ol>
+      <p>
+        <b>NOTE:</b> This is only available to Admins and Super-Admins.
+      </p>
+      <p><b>Objective</b></p>
+      <p>Create a new User Role within the CM Portal.</p>
+      <p>
+        <b>Outline</b>
+        <ol>
+          <li><xref href="#openRole">Open the Roles List-View</xref></li>
+          <li><xref href="#createRole">Create New User Role</xref></li>
+          <li><xref href="#enterDetails">Enter the User Role Details</xref></li>
+          <li><xref href="#saveRole">Save the User Role</xref></li>
+        </ol>
+      </p>
+    </context>
+    <steps>
+      <step id="openRole">
+        <cmd>Open the Roles List-View</cmd>
+        <info>
+          <p>Click the Roles link in the navigation bar.</p>
+        </info>
+      </step>
+      <step id="createRole">
+        <cmd>Create New User Role</cmd>
+        <info>
+          <p>Click the <b>Create new User Role</b> button.</p>
+        </info>
+      </step>
+      <step id="enterDetails">
+        <cmd>Enter the User Role Details</cmd>
+        <info>
+          <p>Enter the details as shown below.</p>
+          <p><b>NOTE:</b> Any restrictions on the fields are outlined.</p>
+          <ul>
+            <li><b>Name:</b> Name of the User Role.</li>
+            <li><b>Permissions:</b> All the Paths that this user-role can access (e.g: /test) and the actions they are allowed to perform (e.g: get, put, post, delete).</li>
+
+          </ul>
+        </info>
+      </step>
+      <step id="saveRole">
+        <cmd>Save User Role</cmd>
+        <info>
+          <p>
+            Click the <b>Save</b> button, the User Role will be created, and the user will be
+            redirected back to the view page for the newly created User Role.
+          </p>
+          <p>
+            <b>NOTE:</b> User Role will not save if any fields are invalid (invalid fields
+            are highlighted in red).
+          </p>
+        </info>
+      </step>
+    </steps>
+    <result>
+      <p>A New User Role is created in the CM Portal and can be assigned to users.</p>
+    </result>
+  </taskbody>
+</task>

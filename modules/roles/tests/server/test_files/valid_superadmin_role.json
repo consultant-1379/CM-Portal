@@ -1,0 +1,4 @@
+{
+    "name": "superAdmin",
+    "pathsPermissions": [{"resources": "/*", "methods": "get put post delete"}]
+  }

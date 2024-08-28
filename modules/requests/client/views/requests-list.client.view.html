@@ -1,0 +1,18 @@
+<section>
+  <div class="page-header">
+    <div class="pull-right">
+        <div class="btn-toolbar input-group" style="width:300px">
+          <input type="text" class="form-control" id="filter-field" placeholder="Search any field...">
+          <span class="input-group-addon search-clear glyphicon glyphicon-remove-circle"></span>
+          <span class="input-group-addon glyphicon glyphicon-search"></span>
+        </div>
+    </div>
+    <h1>{{ vm.title }}</h1>
+  </div>
+
+  <a ui-sref="requests.create" class="btn btn-sm btn-success">Create new Request</a>
+  <table ng-if="vm.requests.length > 0" id="requests-list-table" class="table table-striped table-condensed table-hover">
+    <tbody>
+    </tbody>
+  </table>
+</section>

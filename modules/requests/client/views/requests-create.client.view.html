@@ -1,0 +1,70 @@
+<section>
+  <div class="page-header">
+    <h1>{{ vm.pageTitle }} '{{ vm.request.name }}'</h1>
+  </div>
+  <div class="container">
+    <form name="form" ng-submit="vm.submitForm()" novalidate>
+      <fieldset>
+        <div class="row row-relative">
+            <legend>Request Details</legend>
+            <div class="form-group has-feedback" ng-class="{ 'has-error': form.name.$invalid, 'has-success': form.name.$valid }">
+              <label for="name">Name</label>
+              <input class="form-control" type="text" id="name" name="name" placeholder="Name" ng-model="vm.request.name" ng-minlength="5" ng-maxlength="80" ng-pattern="/^[a-zA-Z0-9\-_.]*$/" required autofocus>
+              <span class="glyphicon form-control-feedback" ng-class="{ 'glyphicon-remove': form.name.$invalid, 'glyphicon-ok': form.name.$valid }"></span>
+              <span class="help-block" ng-if="vm.request.name.startsWith('A_Health_')">
+                <p><b>Warning:</b> Requests with names beginning in 'A_Health_' are reserved for Health-Check Testing: They have no logs stored and are automatically removed during DIT upgrades.</p>
+              </span>
+              <span class="help-block" ng-messages="form.name.$error">
+                <p ng-message="required">This field is required</p>
+                <p ng-message="minlength">This must be at least of length 5</p>
+                <p ng-message="maxlength">This must be at most of length 80</p>
+                <p ng-message="pattern">This must only contain letters, numbers, dots, dashes and underscores</p>
+              </span>
+            </div>
+
+            <div class="form-group has-feedback" ng-class="{ 'has-error': form['program-select'].$invalid, 'has-success': form['program-select'].$valid }">
+              <label for="program">Program</label>
+              <select class="form-control" id="program-select" name="program-select" placeholder="Program" ng-model="vm.request.program_id" ng-options="program._id as program.name for program in vm.programs"
+               required>
+                <option value="" disabled selected>--Select Program--</option>
+              </select>
+              <span class="glyphicon form-control-feedback"
+              ng-class="{ 'glyphicon-remove': form['program-select'].$invalid, 'glyphicon-ok': form['program-select'].$valid }"></span>
+              <span class="help-block" ng-messages="form['program-select'].$error">
+                <p ng-message="required">This field is required</p>
+              </span>
+            </div>
+
+            <div class="form-group has-feedback" ng-class="{ 'has-error': form['schema-select'].$invalid, 'has-success': form['schema-select'].$valid }">
+              <label for="schema">Schema</label>
+              <select class="form-control" id="schema-select" name="schema-select" placeholder="Schema" ng-model="vm.request.schema_id" ng-options="schema._id as schema.name for schema in vm.schemas"
+              required>
+                <option value="" disabled selected>--Select Schema--</option>
+              </select>
+              <span class="glyphicon form-control-feedback"
+              ng-class="{ 'glyphicon-remove': form['schema-select'].$invalid, 'glyphicon-ok': form['schema-select'].$valid }"></span>
+              <span class="help-block" ng-messages="form['schema-select'].$error">
+                <p ng-message="required">This field is required</p>
+              </span>
+            </div>
+        </div>
+      </fieldset>
+      <div ng-if="vm.modifiedSchema">
+        <hr>
+        <div >
+          <fieldset>
+            <div sf-schema="vm.modifiedSchema" sf-form="vm.schemaForm" sf-model="vm.request.content" sf-options="vm.schemaFormOptions"></div>
+          </fieldset>
+        </div>
+      </div>
+      <div id="main-save-button" class="btn-group pull-left"
+        title="{{form.$invalid || vm.formSubmitting ? 'Ensure all values are valid and required fields are filled in.' : ''}}">
+        <button class="btn btn-primary" type="submit" ng-disabled="form.$invalid || vm.formSubmitting">Save</button>
+      </div>
+      <button class="btn-primary float-save-button {{ form.$invalid || vm.formSubmitting ? 'disable-save-button' : '' }}"
+        title="{{form.$invalid || vm.formSubmitting ? 'Ensure all values are valid and required fields are filled in.' : 'Save'}}"
+        ng-disabled="form.$invalid || vm.formSubmitting"><i class="glyphicon glyphicon-floppy-save" aria-hidden="true"></i>
+      </button>
+    </form>
+  </div>
+</section>

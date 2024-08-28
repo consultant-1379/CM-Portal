@@ -1,0 +1,71 @@
+<section>
+  <div class="page-header">
+    <h1>{{ vm.pageTitle }} Configuration File '{{ vm.configurationFile.name }}'</h1>
+  </div>
+
+  <form name="form" ng-submit="vm.submitForm()">
+    <fieldset>
+      <div class="row row-relative">
+        <!-- configurationFile DETAILS -->
+        <div>
+          <div class="form-group has-feedback" ng-class="{ 'has-error': form.name.$invalid, 'has-success': form.name.$valid }">
+            <configurationFile for="name">File Name</configurationFile>
+            <input class="form-control" type="text" id="name" name="name" placeholder="Name" ng-model="vm.configurationFile.name" ng-minlength="2" ng-maxlength="100" ng-pattern="/^[a-zA-Z0-9\-_.]*$/" required autofocus>
+            <span class="glyphicon form-control-feedback" ng-class="{ 'glyphicon-remove': form.name.$invalid, 'glyphicon-ok': form.name.$valid }"></span>
+            <span class="help-block" ng-if="vm.configurationFile.name.startsWith('A_Health_')">
+              <p><b>Warning:</b> Configuration Files with names beginning in 'A_Health_' are reserved for Health-Check Testing: They have no logs stored and are automatically removed during CM Portal upgrades.</p>
+            </span>
+            <span class="help-block" ng-messages="form.name.$error">
+              <p ng-message="required">This field is required</p>
+              <p ng-message="minlength">This must be at least of length 2</p>
+              <p ng-message="maxlength">This must be at most of length 100</p>
+              <p ng-message="pattern">This must only contain letters, numbers, dots, dashes and underscores</p>
+            </span>
+          </div>
+          <!-- Additional Info -->
+          <div class="form-group has-feedback" ng-class="{ 'has-error': form.additionalInfo.$invalid, 'has-success': form.additionalInfo.$valid }">
+            <label for="additionalInfo">Additional Info</label>
+            <input class="form-control" type="text" name="additionalInfo" ng-model="vm.configurationFile.additionalInfo" ng-maxlength="150">
+            <span class="glyphicon form-control-feedback" ng-class="{ 'glyphicon-remove': form.additionalInfo.$invalid, 'glyphicon-ok': form.additionalInfo.$valid }"></span>
+            <span class="help-block" ng-messages="form.additionalInfo.$error">
+              <p ng-message="maxlength">This must be at most of length 150</p>
+            </span>
+          </div>
+
+          <!-- Location(s) -->
+          <div class="form-group has-feedback" ng-class="{ 'has-error': form.locations.$invalid, 'has-success': form.locations.$valid }">
+            <label for="locations">Location(s)</label>
+            <input class="form-control" type="text" name="locations" placeholder="/root/abc/def" ng-model="vm.configurationFile.locations" ng-maxlength="350">
+            <span class="glyphicon form-control-feedback" ng-class="{ 'glyphicon-remove': form.locations.$invalid, 'glyphicon-ok': form.locations.$valid }"></span>
+            <span class="help-block" ng-messages="form.locations.$error">
+              <p ng-message="maxlength">This must be at most of length 350</p>
+            </span>
+          </div>
+
+          <!-- File Type -->
+          <div class="form-group has-feedback"   ng-class="{ 'has-error': form.type.$invalid, 'has-success': form.type.$valid }">
+            <label for="type">File Type</label>
+            <select class="form-control" name="filetype" ng-model="vm.configurationFile.type" required
+              ng-options="fileType for fileType in vm.fileTypeOptions" ng-change="vm.contentBoxChangeHandler()">
+              <option value="" disabled selected>--Select File Type--</option>
+            </select>
+          </div>
+          <!-- File Content -->
+          <div class="form-group has-feedback" ng-class="{ 'has-error': form.filecontent.$invalid, 'has-success': form.filecontent.$valid }">
+            <label for="filecontent">File Content</label>
+            <textarea class="form-control" type="text" id="filecontent" name="filecontent" ng-model="vm.configurationFile.content" required
+              style="width:100%; height:20em;" ng-change="vm.contentBoxChangeHandler()" ></textarea>
+            <span class="glyphicon form-control-feedback" ng-class="{ 'glyphicon-remove': form.filecontent.$invalid, 'glyphicon-ok': form.filecontent.$valid }"></span>
+            <span class="help-block" ng-messages="form.filecontent.$error">
+              <p ng-message="required">This field is required</p>
+              <p ng-message="parse" ng-if="vm.invalidContentMessage">{{ vm.invalidContentMessage }}</p>
+            </span>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <div class="btn-group pull-left" title="{{form.$invalid || vm.formSubmitting ? 'Ensure all values are valid and required fields are filled in.' : ''}}">
+      <button class="btn btn-primary" id="saveButton" type="submit" ng-disabled="form.$invalid || vm.formSubmitting">Save</button>
+    </div>
+  </form>
+</section>

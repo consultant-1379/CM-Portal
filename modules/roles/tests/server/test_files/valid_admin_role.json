@@ -1,0 +1,23 @@
+{
+    "name": "admin",
+    "pathsPermissions": [ {
+      "resources": "/roles",
+      "methods": "get put post delete"
+    },
+    {
+      "resources": "/users",
+      "methods": "get put post delete"
+    },
+    {
+      "resources": "/tokens",
+      "methods": "get put post delete"
+    },
+    {
+      "resources": "/productsUpdate",
+      "methods": "get put post"
+    },
+    {
+      "resources": "/schemas",
+      "methods": "get put post"
+    }]
+  }

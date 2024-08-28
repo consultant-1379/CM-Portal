@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<task id="productsCreate">
+  <title>Products Creation</title>
+  <taskbody>
+    <context>
+      <p>
+      CM-Portal allows Admins to create Products.
+      </p>
+      <p><b>Objective</b></p>
+      <p>Create Products.</p>
+      <p><b>NOTE:</b> This feature is available only to Admins.</p>
+      <p>
+        <b>Outline</b>
+        <ol>
+          <li><xref href="#openProductsCreate">Open the Create Products View</xref></li>
+          <li><xref href="#enterDetails">Add Product Details</xref></li>
+          <li><xref href="#save">Create Products</xref></li>
+        </ol>
+      </p>
+    </context>
+    <steps>
+      <step id="openProductsCreate">
+        <cmd>Open the Create Products View</cmd>
+        <info>
+          <p>From the side Menu, click the Products, then Create link.</p>
+        </info>
+      </step>
+      <step id="enterDetails">
+        <cmd>Add Product Details</cmd>
+        <info>
+         <p>Enter the details as shown below.</p>
+          <ul>
+            <li><b>Job Type:</b> Select required Job Type from dropdown.</li>
+          </ul>
+          <ul>
+            <li><b>Designation:</b>Public name of the product.</li>
+          </ul>
+          <ul>
+            <li><b>Designation Aliases:</b> Click 'Add Designation Alias' button to add new Alias.</li>
+          </ul>
+          <ul>
+            <li><b>Design Responsible:</b> Org Unit Short Name in Ericsson employees profile (shown in People Finder).</li>
+          </ul>
+           <ul>
+            <li><b>Versioning Scheme:</b> Select a versioning scheme from dropdown.</li>
+          </ul>
+          <ul>
+            <li><b>Admins</b> Signums selected from the dropdown menu will be added to Products admins list. Creators signum will be added automatically.</li>
+          </ul>
+           <ul>
+            <li><b>Users</b> Signums selected from the dropdown menu will be added to Products admins list.</li>
+          </ul>
+          <ul>
+            <li><b>Note:</b>if the signum required cannot be found on the dropdown menu: type the signum then press Enter.</li>
+          </ul>
+        </info>
+      </step>
+      <step id="save">
+        <cmd>Create Products</cmd>
+        <info>
+          <p>
+            Click the <b>Save</b> button, the CM-Portal will execute the required operations on Mimer. Success/Failure message will be displayed.
+          </p>
+        </info>
+      </step>
+    </steps>
+    <result>
+      <p>Creates Products in Mimer.</p>
+    </result>
+  </taskbody>
+</task>

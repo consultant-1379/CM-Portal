@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<task id="logs">
+  <title>Historical Logs</title>
+  <taskbody>
+    <context>
+      <p>
+        A Historical Log within the CM Portal is a representation of
+        all actions performed on a specific object. Selecting the "Logs" option in the navigation
+        bar provides users with the option to view any objects logs list view for the following
+        object types: User Roles.
+      </p>
+      <p>
+        * User Role logs can only be viewed by a user with Admin privileges.
+      </p>
+      <p><b>Logs List View</b></p>
+      <p>
+        This page provides a list-view of logs for a specific object-type, providing some basic
+        log information on each object of a given type. The tabulated objects log information is
+        separated between two tables: "Live" and "Deleted". "Live" objects logs are for objects
+        that still exist within the Database whilst "Deleted" objects logs are for objects that
+        have been removed from the Database. A search field is provided on the view for filtering
+        the tables by specific object parameter values. The tables can be sorted by any of these
+        values.
+      </p>
+      <p>
+        The tables detail the following information on each object:
+        <ul>
+          <li>
+            Each table provides basic log information about each object: Who it was created by,
+            when it was created, the object's name and the object's ID.
+          </li>
+          <li>
+            The 'Live' table provides additional information of by who and when the object was last
+            modified.
+          </li>
+          <li>
+            The 'Deleted' table provides additional information of by who and when the object was
+            deleted.
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        A 'view log' action button exists for each object that provides the user access to an
+        object's log-view page. Here, a detailed view is provided that displays more information
+        on each CRUD action performed on the object.
+      </p>
+
+      <p><b>Object Log View</b></p>
+      <p>
+        The log-view page provides detailed information records about individual actions performed
+        on a specific object. The first record provides object creation information. This includes
+        information details such as by who and when the object was created, as well as providing a
+        "Download" button so that the user can download a JSON file of the object as it existed
+        when it was created.
+      </p>
+
+      <p>
+        If one or more updates have been performed on an object, a record is provided for each
+        update that includes the following details:
+        <ol>
+          <li>
+            Information on the person that performed the update. Selecting the Updater's name opens
+            a 'create email' panel in Outlook so that the user can contact the updater if needs be.
+          </li>
+          <li>
+            Information on the date and time that the update occurred on.
+          </li>
+          <li>
+            A table that details each specific change made to the object during that update. The
+            table is represented in a hierarchy format, where if the object is multi-layered then
+            parent object fields can be toggled to either show or hide its children's key-values.
+          </li>
+          <li>
+            A "Download" button that will download a JSON file of the object as it existed when the
+            update occurred.
+          </li>
+        </ol>
+      </p>
+
+      <p>
+        If the object has been deleted from the database, a final log will state by whom and when
+        the deletion occurred. A "Download" button is also provided here so that the user can
+        download a JSON file of the object as it existed before it was deleted.
+      </p>
+      <p>
+        If the object associated with a specific log is still live in the database then there is a
+        link provided at the top of that logs view to take the user directly to the live objects
+        standard view page within CM Portal. There also exists a button on each objects normal view page
+        to take the user to their log page (if a log exists for this object).
+      </p>
+
+      <p><b>Restore Object Functionality</b></p>
+      <p>
+        This functionality allows the user to revert objects back to any of their previous
+        states. To use this functionality, the user must access the log-view for a specified
+        object. Here, a "restore" button is provided for each individual log record. Clicking a
+        "restore" button will then revert the objects state to how it existed at the time of the
+        specified record.
+        <ol>
+          <li>
+            Restoring a "live" object in the database will revert the said objects state to the
+            specified version.
+          </li>
+          <li>
+            Restoring a "deleted" object will recreate the specified version of the said object
+            with a new ID.
+          </li>
+          <li>
+            Restoring an object will fail if the unique attributes of the artifact now exist in
+            another artifact.
+          </li>
+          <li>
+            Restoring an object will fail if the dependant or associated artifacts of the object
+            does not exist anymore.
+          </li>
+        </ol>
+      </p>
+    </context>
+  </taskbody>
+</task>

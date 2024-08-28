@@ -1,0 +1,65 @@
+<section>
+  <div class="page-header">
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <select class="btn btn-sm btn-success" name="version" ng-model="vm.versionToDownload" required
+          ng-options="version for version in vm.allVersions" ng-change="vm.downloadFile()">
+          <option value="" selected>--Select Version To Download--</option>
+        </select>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-sm btn-primary" ui-sref="configurationFiles.edit({configurationFileId: vm.configurationFile._id})">Edit</a>
+      </div>
+    </div>
+    <div class="btn-group">
+      <a class="btn btn-sm btn-warning" id="view-log" ui-sref="logs.view({ objType: 'configurationFiles', objId: vm.configurationFile._id })">View
+        Log</a>
+    </div>
+    <h1>Viewing Configuration File '{{ vm.configurationFile.name }}'</h1>
+  </div>
+  <form>
+    <fieldset disabled>
+      <div class="row row-relative">
+        <!-- Configuration File DETAILS -->
+        <!-- <div class="row row-relative"> -->
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Name</label>
+            <p class="form-control-static">{{ vm.configurationFile.name }}</p>
+          </div>
+          <div class="form-group">
+            <label>Type</label>
+            <p class="form-control-static">{{ vm.configurationFile.type }}</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-border">
+          <div class="col-border-padding">
+            <div class="form-group">
+              <label>Version</label>
+              <p class="form-control-static">{{ vm.configurationFile.version }}</p>
+            </div>
+
+            <div class="form-group" ng-if="vm.configurationFile.additionalInfo">
+              <label>Additional Info</label>
+              <p class="form-control-static">{{ vm.configurationFile.additionalInfo }}</p>
+            </div>
+
+            <div class="form-group" ng-if="vm.configurationFile.locations" style="word-wrap: break-word;">
+              <label>Location(s)</label>
+              <p class="form-control-static">{{ vm.configurationFile.locations }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Content</label>
+        <textarea json-text class="form-control-static" id="textAreaContentJSON" ng-if="vm.isJSON" ng-model="vm.configurationFile.content" style="width:100%; height:20em;"></textarea>
+        <textarea class="form-control-static" id="textAreaContentNotJSON" ng-if="!vm.isJSON" name="content" ng-model="vm.configurationFile.content.data"
+        style="width:100%; height:20em;">
+        </textarea>
+      </div>
+      <!-- </div> -->
+    </fieldset>
+  </form>
+</section>

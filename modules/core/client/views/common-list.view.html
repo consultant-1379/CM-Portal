@@ -1,0 +1,67 @@
+<section>
+    <div class="page-header">
+      <div class="pull-right" style="display:flex; align-items: center">
+        <div class="btn-toolbar input-group" style="width:200px;">
+          <input type="text" class="form-control" id="filter-field" placeholder="Search any field...">
+          <span class="input-group-addon glyphicon glyphicon-search"></span>
+        </div>
+      </div>
+      <h1>{{ vm.artifactType }}s</h1>
+
+      <!-- VARIOUS ARTIFACTS FILTERS  -->
+      <div id="filters-panel" style="display:none"
+        ng-include="'artifact-filters'" ng-repeat="pass in [{}]">
+      </div>
+    </div>
+
+    <div ng-hide="vm.artifactType == 'Token' || vm.artifactType == 'User' || vm.artifactType == 'Products Update'" title="{{ vm.createButtonMessage }}">
+      <a id="{{ vm.artifactTypeLower }}.create" ui-sref="{{ vm.artifactTypeLower }}.create" class="btn btn-sm btn-primary">
+        Create new {{ vm.artifactType }}
+      </a>
+    </div>
+    <div ng-if="vm.visibleArtifacts.length == 0 && vm.artifactType == 'Token' " title="{{ vm.createButtonMessage }}">
+      <a id="{{ vm.artifactTypeLower }}.create" ui-sref="{{ vm.artifactTypeLower }}.create" class="btn btn-sm btn-primary">
+        Add {{ vm.artifactType }}
+      </a>
+    </div>
+    <div ng-if="vm.artifactType == 'Products Update' " title="{{ vm.createButtonMessage }}">
+      <a id="{{ vm.artifactTypeLower }}.create" ui-sref="{{ vm.artifactTypeLower }}.create" class="btn btn-sm btn-primary">
+        Update Products
+      </a>
+    </div>
+    <!-- ARTIFACTS TABLE LOADING ANIMATION -->
+    <div ng-if="vm.tableLoading" class="table-loading">
+      <div class="ebLoader">
+          <div class="ebLoader-Holder">
+              <span class="ebLoader-icon"></span>
+          </div>
+      </div>
+    </div>
+    <!-- ARTIFACTS TABLE -->
+    <div ng-style="vm.tableLoading && { 'visibility': 'hidden' }">
+      <table id="{{ vm.artifactTypeLower }}-table" class="table table-striped table-condensed non-clickable-row">
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <script id="artifact-filters" type="text/ng-template">
+    <table id="filters-table" class="filters-table">
+      <tr>
+        <th ng-repeat="filterOption in vm.filterOptions">{{ filterOption.heading }}: </th>
+      </tr>
+      <tr>
+        <td ng-repeat="filterOption in vm.filterOptions">
+          <select class="form-control" id="{{ filterOption.artifactType }}_filter_select"
+            ng-model="vm[vm.firstLetterLowerCase(filterOption.artifactType) + 'Filter']"
+            ng-options="artifact._id as artifact.name for artifact in filterOption.artifacts"
+            ng-change="vm.updateViewForFilter(vm.firstLetterLowerCase(filterOption.artifactType) + 'Filter',
+                                              vm[vm.firstLetterLowerCase(filterOption.artifactType) + 'Filter'])"
+            required>
+            <option value="" selected>All</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+  </script>

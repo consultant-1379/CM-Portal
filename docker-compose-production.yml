@@ -1,0 +1,38 @@
+version: '2'
+services:
+  nginx:
+    image: armdocker.rnd.ericsson.se/proj-cm-tools/cmportal_reverse_proxy:${UPGRADE_VERSION}
+    restart: always
+    ports:
+      - "443:443"
+      - "8008:8008"
+    depends_on:
+      - nodejs
+      - swagger
+      - helpdocs
+    environment:
+      - SERVER=${SERVER}
+    volumes:
+      - ./config/sslcerts:/etc/nginx/certs
+  nodejs:
+    image: armdocker.rnd.ericsson.se/proj-cm-tools/cm_portal:${UPGRADE_VERSION}
+    restart: always
+    environment:
+     - LDAP_URL=${LDAP_URL}
+     - SEARCH_FILTER=${SEARCH_FILTER}
+     - MUNIN_URL_SANDBOX=${MUNIN_URL_SANDBOX}
+     - MUNIN_URL=${MUNIN_URL}
+     - MIMER_URL_SANDBOX=${MIMER_URL_SANDBOX}
+     - MIMER_URL=${MIMER_URL}
+     - BASE_DN_LIST=${BASE_DN_LIST}
+     - UPGRADE_TOOL_URL=${UPGRADE_TOOL_URL}
+     - DTTADM100_USERNAME=${DTTADM100_USERNAME}
+     - DTTADM100_PASSWORD=${DTTADM100_PASSWORD}
+  swagger:
+    image: armdocker.rnd.ericsson.se/proj-cm-tools/cmportal_api_docs:${UPGRADE_VERSION}
+    restart: always
+    environment:
+     - API_URL=/apidocs/swagger.json
+  helpdocs:
+    image: armdocker.rnd.ericsson.se/proj-cm-tools/cmportal_help_docs:${UPGRADE_VERSION}
+    restart: always

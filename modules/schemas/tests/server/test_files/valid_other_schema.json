@@ -1,0 +1,25 @@
+{
+  "name": "otherSchema1",
+  "program_id": "000000000000000000000000",
+  "content": {
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "type": "object",
+    "definitions": {
+      "any_string": {
+        "description": "This must be any string",
+        "pattern": "^..*$",
+        "type": "string"
+      }
+    },
+    "properties": {
+      "parameters": {
+        "properties": {
+          "someKey": {
+            "$ref": "#/definitions/any_string"
+          }
+        }
+      }
+    },
+    "additionalProperties": false
+  }
+}

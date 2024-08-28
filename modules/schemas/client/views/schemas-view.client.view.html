@@ -1,0 +1,39 @@
+<section>
+  <div class="page-header">
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <a class="btn btn-sm btn-primary" ui-sref="schemas.edit({schemaId: vm.schema._id})">Edit</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-sm btn-warning" id="view-log" ui-sref="logs.view({ objType: 'schemas', objId: vm.schema._id })">View Log</a>
+      </div>
+    </div>
+    <h1>Viewing schema '{{ vm.schema.name }}'</h1>
+  </div>
+  <form>
+    <fieldset disabled>
+      <div class="row row-relative">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="name">Name</label>
+            <p class="form-control-static">{{ vm.schema.name }}</p>
+          </div>
+          <div class="form-group">
+            <label class="name">Type</label>
+            <p class="form-control-static">{{ vm.schema.type }}</p>
+          </div>
+          <div class="form-group">
+            <label>Program</label>
+            <p class="form-control-static">
+              <a ui-sref="programs.view({programId: vm.program._id})">{{ vm.program.name }}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Content</label>
+        <textarea json-text class="form-control-static" ng-model="vm.schema.content" style="width:100%; height:20em;"></textarea>
+      </div>
+    </fieldset>
+  </form>
+</section>

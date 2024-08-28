@@ -1,0 +1,12 @@
+{
+    "designationAlias": [],
+    "jobType": "MS (APR-APR201, IMAGE-CXU101, SOURCE-CAV101, HELM-CXD101)",
+    "designation": "DESIG",
+    "designResponsible": "BCSS",
+    "productVersioningSchema": "SemVer2.0.0",
+    "description": "Server test description",
+    "usersAccess": ["testuser3"],
+    "adminsAccess": ["testuser2", "testuser"],
+    "schemaVersion": "15.1.2",
+    "productNumber": "CXD101"
+}

@@ -1,0 +1,51 @@
+{
+  "name": "projectRequest1",
+  "program_id": "000000000000000000000000",
+  "content": {
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "type": "object",
+    "definitions": {
+      "jiraComponents": {
+        "default" : "Other"
+      },
+      "jiraLabels": {
+        "default": "label1, label2"
+      },
+      "jiraUrl": {
+        "default": "jira-url.rnd.internal.ericsson.com"
+      },
+      "jiraProject": {
+        "default": "IDUN"
+      },
+      "productName": {
+        "title": "Product Name",
+        "description": "This will form the product's ArtifactID. e.g. my-product-name",
+        "pattern": "^.+$",
+        "type": "string",
+        "error_message": "This cannot contain spaces."
+    }
+    },
+    "properties": {
+      "parameters": {
+        "properties": {
+          "jiraUrl": {
+            "$ref": "#/definitions/jiraUrl"
+          },
+          "jiraComponents": {
+            "$ref": "#/definitions/jiraComponents"
+          },
+          "jiraProject": {
+            "$ref": "#/definitions/jiraProject"
+          },
+          "jiraLabels": {
+            "$ref": "#/definitions/jiraLabels"
+          },
+          "productName": {
+            "$ref": "#/definitions/productName"
+          }
+        }
+      }
+    },
+    "additionalProperties": false
+  }
+}

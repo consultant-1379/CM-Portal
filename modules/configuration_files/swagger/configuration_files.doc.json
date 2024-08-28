@@ -1,0 +1,308 @@
+{
+  "paths": {
+    "/configurationFiles": {
+      "get": {
+        "tags": [
+          "ConfigurationFiles"
+        ],
+        "summary": "Returns a list of all Configuration-Files.",
+        "description": "Returns a list of all Configuration-Files and their key-values.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ConfigurationFile"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ConfigurationFiles"
+        ],
+        "summary": "Create a new Configuration-File.",
+        "description": "Creates and returns a new Configuration-File.",
+        "produces": [
+          "application/json"
+        ],
+        "consume": [
+          "application/json"
+        ],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "description": "Configuration-File object that represents your Configuration-File",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/ConfigurationFile"
+          }
+        }],
+        "responses": {
+          "201": {
+            "description": "Created Configuration-File successfully."
+          },
+          "400": {
+            "description": "Possible messages:\n* Path 'name' is required\n* Error, provided name is not unique.\n* name is not valid; {PATH} can only contain letters, numbers, dots, dashes and underscores.\n* Path 'name' {PATH} is shorter than the minimum allowed length (2).\n* Path 'name' {PATH} is longer than the maximum allowed length (100).\n* Field `rogueKey` is not in schema and strict mode is set to throw.\n* There was a syntax error found in your request, please make sure that it is valid and try again"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/configurationFiles/{configurationFileID}": {
+      "get": {
+        "tags": [
+          "ConfigurationFiles"
+        ],
+        "summary": "Returns the Configuration-File for a specified ID.",
+        "description": "Returns a Configuration-File with the specified ID value (if it exists).",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "configurationFileID",
+          "in": "path",
+          "required": true,
+          "description": "The id of the Configuration-File to retrieve.",
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "Configuration-File successfully retrieved.",
+            "schema": {
+              "$ref": "#/definitions/ConfigurationFile"
+            }
+          },
+          "404": {
+            "description": "A Configuration-File with id {id} does not exist."
+          },
+          "422": {
+            "description": "Error while attempting to retrieve Configuration-File for specified ID."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ConfigurationFiles"
+        ],
+        "summary": "Update a Configuration-File.",
+        "description": "Update a Configuration-File.",
+        "produces": [
+          "application/json"
+        ],
+        "consume": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "configurationFileID",
+            "in": "path",
+            "required": true,
+            "description": "The id of the Configuration-File to update",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Configuration-File object that represents your Configuration-File update possible, not all fields in the body are required",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConfigurationFile"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully updated Configuration-File",
+            "schema": {
+              "$ref": "#/definitions/ConfigurationFile"
+            }
+          },
+          "400": {
+            "description": "Possible messages:\n* Path 'name' is required\n* Error, provided name is not unique.\n* name is not valid; {PATH} can only contain letters, numbers, dots, dashes and underscores.\n* Path 'name' {PATH} is shorter than the minimum allowed length (2).\n* Path 'name' {PATH} is longer than the maximum allowed length (100).\n* Field `rogueKey` is not in schema and strict mode is set to throw.\n* There was a syntax error found in your request, please make sure that it is valid and try again"
+          },
+          "404": {
+            "description": "A Configuration-File with id '{id}' does not exist"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ConfigurationFiles"
+        ],
+        "summary": "Delete a Configuration-File.",
+        "description": "Delete a Configuration-File.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "configurationFileID",
+          "in": "path",
+          "required": true,
+          "description": "The id of the Configuration-File to delete",
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted Configuration-File"
+          },
+          "404": {
+            "description": "A Configuration-File with id '{id}' does not exist"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/configurationFiles/name/{configurationFileName}/{configurationFileType}": {
+      "get": {
+        "tags": [
+          "ConfigurationFiles"
+        ],
+        "summary": "Returns the Configuration-File for a specified name.",
+        "description": "Returns a Configuration-File with the specified name value (if it exists).",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "configurationFileName",
+            "in": "path",
+            "required": true,
+            "description": "The name of the Configuration-File to retrieve.",
+            "type": "string"
+          },
+          {
+            "name": "configurationFileType",
+            "in": "path",
+            "required": true,
+            "description": "The type of the Configuration-File to retrieve.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Configuration-File successfully retrieved.",
+            "schema": {
+              "$ref": "#/definitions/ConfigurationFile"
+            }
+          },
+          "404": {
+            "description": "A <Bucket/Configuration-File> with name '{name}' does not exist."
+          },
+          "422": {
+            "description": "Error while attempting to retrieve Configuration-File for specified name."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ConfigurationFiles"
+        ],
+        "summary": "Update a Configuration-File.",
+        "description": "Update a Configuration-File.",
+        "produces": [
+          "application/json"
+        ],
+        "consume": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "configurationFileName",
+            "in": "path",
+            "required": true,
+            "description": "The name of the Configuration-File to update.",
+            "type": "string"
+          },
+          {
+            "name": "configurationFileType",
+            "in": "path",
+            "required": true,
+            "description": "The type of the Configuration-File to update.",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Configuration-File object that represents your Configuration-File update possible, not all fields in the body are required. e.g. can contain only \"name\":\"updatedName\" as body.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConfigurationFile"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully updated Configuration-File",
+            "schema": {
+              "$ref": "#/definitions/ConfigurationFile"
+            }
+          },
+          "400": {
+            "description": "Possible messages:\n* Path 'name' is required\n* Error, provided name is not unique.\n* name is not valid; {PATH} can only contain letters, numbers, dots, dashes and underscores.\n* Path 'name' {PATH} is shorter than the minimum allowed length (2).\n* Path 'name' {PATH} is longer than the maximum allowed length (100).\n* Field `rogueKey` is not in schema and strict mode is set to throw.\n* There was a syntax error found in your request, please make sure that it is valid and try again"
+          },
+          "404": {
+            "description": "A <Bucket/Configuration-File> with name '{name}' does not exist"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ConfigurationFiles"
+        ],
+        "summary": "Delete a Configuration-File.",
+        "description": "Delete a Configuration-File.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "configurationFileName",
+            "in": "path",
+            "required": true,
+            "description": "The name of the Configuration-File to delete.",
+            "type": "string"
+          },
+          {
+            "name": "configurationFileType",
+            "in": "path",
+            "required": true,
+            "description": "The type of the Configuration-File to delete.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted Configuration-File"
+          },
+          "404": {
+            "description": "A <Bucket/Configuration-File> with name '{name}' does not exist"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
